@@ -20,11 +20,11 @@
 <br />
 <p align="center">
   <a href="https://github.com/bunnyfap/client">
-    <img src="https://github.com/bunnyfap/client/blob/master/assets/images/bunnylove/bunnylove.png?raw=true" alt="Logo" width="80" height="80">
+    <img src="https://github.com/bunnyfap/client/blob/master/assets/images/logo-white-vertical.png?raw=true" alt="Logo" width="200" height="200">
 <!--     <img src="https://styles.redditmedia.com/t5_232vss/styles/communityIcon_5tt2aa0fahq41.png?width=256&s=a5acf63ee57b4e34a467b62dba28db4998b4a16c" alt="Logo" width="80" height="80"> -->
   </a>
 
-  <h3 align="center">Bunnyfap</h3>
+  <!-- <h3 align="center">Bunnyfap</h3> -->
 
   <p align="center">
     This repository contains the frontend client to bunnyfap.

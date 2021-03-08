@@ -87,7 +87,8 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+You will need to install the following packages before you can get started:
+
 * [Node.js](https://nodejs.org/en/)
 * [NPM](https://www.npmjs.com/)
 
@@ -116,7 +117,10 @@ This is an example of how to list things you need to use the software and how to
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+After running the client, it will automatically update when you make changes to the code. Keep in mind that it has to rebuild entirely every time you change something. 
 
+### Server connection
+At the moment, the Bunnyfap server is not open source, and therefore you will not be able to run your own instance yet. We are currently in the process of open sourcing it. For the momemt, you will have to connect directly to the main server, while we are still working on deploying a test server. The client will connect to the production server by default. 
 
 ### Documentation
 Documentation is written using [Vuese](https://vuese.org/) and can be viewed by running the following command:

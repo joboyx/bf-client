@@ -154,8 +154,9 @@ If you want to contribute and make changes to the code base, we suggest you fork
    ```
   
 #### Making changes
-1. We suggest you make changes on your very own feature branch:
+1. We suggest you make changes on your very own feature branch, which branches from the `develop` branch:
    ```sh
+   git checkout develop
    git checkout -b AmazingFeature
    ```
 2. Once you have added the feature you are working on, commit the changes:
@@ -164,7 +165,7 @@ If you want to contribute and make changes to the code base, we suggest you fork
    ```
 3. Then, push the changes your forked repo:
    ```sh
-     git push origin feature/AmazingFeature
+     git push origin AmazingFeature
    ```
 4. Lastly, [create a pull request](https://github.com/bunnyfap/bf-client/pulls) to merge your code to the original repo!
 

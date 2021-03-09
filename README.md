@@ -163,7 +163,7 @@ We rely on community donations through [Patreon](http://patreon.com/bunnyfap) to
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed under the GNU GPLv3.0 License. See [LICENSE](https://github.com/bunnyfap/client/blob/master/LICENSE) for more information.
 
 
 <!-- CONTACT -->

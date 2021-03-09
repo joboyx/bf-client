@@ -23,7 +23,8 @@ We kindly ask you to follow the guidelines put forth in this document. Doing so 
 
 [Organisation and management](organisation-and-management)
 * [Engineering and Development](engineering-and-development)
-* [UI/UX and Design](seo-and-outreach)
+* [UI/UX and Design](ui/ux-and-design)
+* [SEO and Outreach](seo-and-outreach)
 * [Writing and Documentation](writing-and-documentation)
 
 # Code of Conduct

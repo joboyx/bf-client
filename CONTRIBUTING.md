@@ -9,6 +9,7 @@ We kindly ask you to follow the guidelines put forth in this document. Doing so 
 
 # Table of Contents
 [Code of Conduct](#code-of-conduct) 
+
 [How can I contribute?](#how-can-i-contribute)
 * [Reporting a bug](#reporting-a-bug)
 * [Suggesting enhancements](#suggesting-enhancements)

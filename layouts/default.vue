@@ -65,12 +65,13 @@ export default {
         // console.log(body)
         this.$axios.$post('/api/auth/guest', body, h)
           .then((res)=>{
-            console.log(res)
+            // console.log(res)
             this.guest(res.token)
             this.ready = true
           })
           .catch((err)=>{
             console.log(err)
+            this.$router.push('/maintenance')
           })
     } else {
       this.ready = true

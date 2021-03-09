@@ -30,7 +30,7 @@ We kindly ask you to follow the guidelines put forth in this document. Doing so 
 
 # Code of Conduct
 
-This project and everyone participating in it is governed by the [BunnyFap Code of Conduct](https://github.com/bunnyfap/client/blob/master/CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [info@bunnyfap.com](mailto:info@bunnyfap.com).
+This project and everyone participating in it is governed by the [BunnyFap Code of Conduct](https://github.com/bunnyfap/bf-client/blob/master/CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [info@bunnyfap.com](mailto:info@bunnyfap.com).
 
 # How can I contribute?
 
@@ -52,10 +52,10 @@ Before creating bug reports, please check [the list below](#before-submitting-a-
 
 
 ### Before Submitting A Bug Report
-* **Check the current [list of issues](https://github.com/bunnyfap/client/issues)** to see if the problem has already been reported. If it has **and the issue is still open**, add a comment to the existing issue instead of opening a new one.
+* **Check the current [list of issues](https://github.com/bunnyfap/bf-client/issues)** to see if the problem has already been reported. If it has **and the issue is still open**, add a comment to the existing issue instead of opening a new one.
 
 ### How Do I Submit A (Good) Bug Report?
-Bugs are tracked as [GitHub issues](https://guides.github.com/features/issues/). You can create a new issue [here](https://github.com/bunnyfap/client/issues/new/choose), and fill out [the bug report template](https://github.com/bunnyfap/client/blob/master/.github/ISSUE_TEMPLATE/bug_report.md).
+Bugs are tracked as [GitHub issues](https://guides.github.com/features/issues/). You can create a new issue [here](https://github.com/bunnyfap/bf-client/issues/new/choose), and fill out [the bug report template](https://github.com/bunnyfap/bf-client/blob/master/.github/ISSUE_TEMPLATE/bug_report.md).
 
 Explain the problem and include additional details to help maintainers reproduce the problem:
 
@@ -70,7 +70,7 @@ Explain the problem and include additional details to help maintainers reproduce
 
 
 ## Suggesting enhancements
-Before creating enhancement suggestions, please check [this list](https://github.com/bunnyfap/client/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement) as you might find out that you don't need to create one. When you are creating an enhancement suggestion, please include as many details as possible. Fill in [the template](https://github.com/bunnyfap/client/blob/master/.github/ISSUE_TEMPLATE/feature_request.md), including the steps that you imagine you would take if the feature you're requesting existed.
+Before creating enhancement suggestions, please check [this list](https://github.com/bunnyfap/bf-client/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement) as you might find out that you don't need to create one. When you are creating an enhancement suggestion, please include as many details as possible. Fill in [the template](https://github.com/bunnyfap/bf-client/blob/master/.github/ISSUE_TEMPLATE/feature_request.md), including the steps that you imagine you would take if the feature you're requesting existed.
 
 ### How Do I Submit A (Good) Enhancement Suggestion?
 
@@ -87,8 +87,8 @@ Enhancement suggestions are tracked as [GitHub issues](https://guides.github.com
 ## Your first contribution
 Unsure where to begin contributing to Bunnyfap? You can start by looking through these `beginner` and `help-wanted` issues:
 
-* [Beginner issues](https://github.com/bunnyfap/client/issues?q=is%3Aopen+is%3Aissue+label%3Abeginner) - issues which should only require a few lines of code, and a test or two.
-* [Help wanted issues](https://github.com/bunnyfap/client/issues?q=is%3Aopen+is%3Aissue+label%3Abeginner+label%3A%22help+wanted%22) - issues which should be a bit more involved than `beginner` issues.
+* [Beginner issues](https://github.com/bunnyfap/bf-client/issues?q=is%3Aopen+is%3Aissue+label%3Abeginner) - issues which should only require a few lines of code, and a test or two.
+* [Help wanted issues](https://github.com/bunnyfap/bf-client/issues?q=is%3Aopen+is%3Aissue+label%3Abeginner+label%3A%22help+wanted%22) - issues which should be a bit more involved than `beginner` issues.
 
 Both issue lists are sorted by total number of comments. While not perfect, number of comments is a reasonable proxy for impact a given change will have.
 
@@ -96,10 +96,10 @@ Both issue lists are sorted by total number of comments. While not perfect, numb
 Here are a couple of friendly tutorials which will help you out: http://makeapullrequest.com/ and http://www.firsttimersonly.com.
 
 ## Code review process
-The core team looks at [Pull Requests](https://github.com/bunnyfap/client/pulls) on a regular basis, which are discussed on the Discord server. After feedback has been given to pull requests we expect responses within four weeks. After fourt weeks we may close the pull request if it isn't showing any activity.
+The core team looks at [Pull Requests](https://github.com/bunnyfap/bf-client/pulls) on a regular basis, which are discussed on the Discord server. After feedback has been given to pull requests we expect responses within four weeks. After fourt weeks we may close the pull request if it isn't showing any activity.
 
 # I wanna start coding
-Make sure to go through the [README.md](https://github.com/bunnyfap/client) for installation instructions as well. 
+Make sure to go through the [README.md](https://github.com/bunnyfap/bf-client) for installation instructions as well. 
 ### Tech stack
 We make use of the following libraries for out front-end development.
 
@@ -117,7 +117,7 @@ The bunnyfap client can be entirely developed locally. Follow these steps to get
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/bunnyfap/client.git
+   git clone https://github.com/bunnyfap/bf-client.git
    cd client
    ```
 2. Install all dependencies
@@ -140,7 +140,7 @@ If you want to contribute and make changes to the code base, we suggest you fork
    ```   
 5. Next, you want to make sure your repo remains in sync with the upsteam repo. 
    ```sh
-   git remote add upstream https://github.com/bunnyfap/client.git
+   git remote add upstream https://github.com/bunnyfap/bf-client.git
    ``` 
 6. Verify the the remote upstream.
    ```sh
@@ -160,7 +160,7 @@ If you want to contribute and make changes to the code base, we suggest you fork
    ```sh
      git push origin feature/AmazingFeature
    ```
-4. Lastly, [create a pull request](https://github.com/bunnyfap/client/pulls) to merge your code to the original repo!
+4. Lastly, [create a pull request](https://github.com/bunnyfap/bf-client/pulls) to merge your code to the original repo!
 
 ## Documentation
 Documentation is written using [Vuese](https://vuese.org/) and can be viewed by running the following command:
@@ -169,28 +169,28 @@ Documentation is written using [Vuese](https://vuese.org/) and can be viewed by 
    ```
 
 # Organisation and management
-To keep this project clear and coherent, we have organised front-end development according to 4 teams. You can view their [individual project boards](https://github.com/bunnyfap/client/projects) to find out what type of issues they are working on. Feel free to join the official Discord development server to get in touch with your fellow contributors, ask questions, and throw around ideas. Below is a quick summary of each of the teams and their roles.
+To keep this project clear and coherent, we have organised front-end development according to 4 teams. You can view their [individual project boards](https://github.com/bunnyfap/bf-client/projects) to find out what type of issues they are working on. Feel free to join the official Discord development server to get in touch with your fellow contributors, ask questions, and throw around ideas. Below is a quick summary of each of the teams and their roles.
 
 ## Engineering and Development
 
 * **Project lead:** We are currently looking for an *Engineering and Development* project lead! If you are interested, send a message to Gambit on Discord.
 
-The *[Engineering and Development](https://github.com/bunnyfap/client/projects/3)* team is responsible for making technical contributions to the front-end. They work closely with the other teams ensure that the platform is running smoothly and that everything remains functional. 
+The *[Engineering and Development](https://github.com/bunnyfap/bf-client/projects/3)* team is responsible for making technical contributions to the front-end. They work closely with the other teams ensure that the platform is running smoothly and that everything remains functional. 
 
 ## UI/UX and Design
 
 * **Project lead:** We are currently looking for an *UI/UX and Designt* project lead! If you are interested, send a message to Gambit on Discord.
 
-The *[UI/UX and Design](https://github.com/bunnyfap/client/projects/2)* team is responsible for providing users with an intuitive and elegant experience with the functionality the platform has to offer. They are ultimately responsible for the look and feel of the website.
+The *[UI/UX and Design](https://github.com/bunnyfap/bf-client/projects/2)* team is responsible for providing users with an intuitive and elegant experience with the functionality the platform has to offer. They are ultimately responsible for the look and feel of the website.
 
 ## SEO and Outreach
 
 * **Project lead:** We are currently looking for an *SEO and Outreacht* project lead! If you are interested, send a message to Gambit on Discord.
 
-The *[SEO and Outreach](https://github.com/bunnyfap/client/projects/4)* team is all about making sure that we can be found on the web and that people know who we are. 
+The *[SEO and Outreach](https://github.com/bunnyfap/bf-client/projects/4)* team is all about making sure that we can be found on the web and that people know who we are. 
 
 ### Writing and Documentation
 
 * **Project lead:** We are currently looking for an *Writing and Documentation* project lead! If you are interested, send a message to Gambit on Discord.
 
-The *[Writing and Documentation](https://github.com/bunnyfap/client/projects/5)* team is responsible for making sure that everyone can find their way around Bunnyfap; this includes imrpoving documentation, writing tutorials and help pages, and also possibly writing blog posts.
+The *[Writing and Documentation](https://github.com/bunnyfap/bf-client/projects/5)* team is responsible for making sure that everyone can find their way around Bunnyfap; this includes imrpoving documentation, writing tutorials and help pages, and also possibly writing blog posts.

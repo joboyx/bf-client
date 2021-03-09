@@ -1,0 +1,13 @@
+name: Greetings
+
+on: [pull_request, issues]
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/first-interaction@v1
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        issue-message: 'You just opened your first issue at Bunnyfap 😊 Thank you for contributing! ❤️'
+        pr-message: 'You just made you first pull request at Bunnyfap! ❤️ We will review it as soon as possible, stay tuned! 😊'

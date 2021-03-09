@@ -19,8 +19,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/bunnyfap/client">
-    <img src="https://github.com/bunnyfap/client/blob/master/assets/images/logo-white-vertical.png?raw=true" alt="Logo" width="200" height="200">
+  <a href="https://github.com/bunnyfap/bf-client">
+    <img src="https://github.com/bunnyfap/bf-client/blob/master/assets/images/logo-white-vertical.png?raw=true" alt="Logo" width="200" height="200">
 <!--     <img src="https://styles.redditmedia.com/t5_232vss/styles/communityIcon_5tt2aa0fahq41.png?width=256&s=a5acf63ee57b4e34a467b62dba28db4998b4a16c" alt="Logo" width="80" height="80"> -->
   </a>
 
@@ -32,9 +32,9 @@
     <br />
     <a href="https://www.bunnyfap.com">Website</a>
     ·
-    <a href="https://github.com/bunnyfap/client/issues/new/choose">Report Bug</a>
+    <a href="https://github.com/bunnyfap/bf-client/issues/new/choose">Report Bug</a>
     ·
-    <a href="https://github.com/bunnyfap/client/issues/new/choose">Request Feature</a>
+    <a href="https://github.com/bunnyfap/bf-client/issues/new/choose">Request Feature</a>
   </p>
 </p>
 
@@ -103,7 +103,7 @@ You will need to install the following packages before you can get started:
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/bunnyfap/client.git
+   git clone https://github.com/bunnyfap/bf-client.git
    ```
 2. Install NPM packages
    ```sh
@@ -135,12 +135,12 @@ Admittedly, the documentation is still a bit rought around the edges. If anythin
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [open issues](https://github.com/bunnyfap/client/issues) for a list of proposed features (and known issues). You can also view the [project boards](https://github.com/bunnyfap/client/projects) to see which items are currently being worked on.
+See the [open issues](https://github.com/bunnyfap/bf-client/issues) for a list of proposed features (and known issues). You can also view the [project boards](https://github.com/bunnyfap/bf-client/projects) to see which items are currently being worked on.
 
 <!-- CONTRIBUTING -->
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**. Below is a quick start to contributing to Bunnyfap; however, we do recommend you go through the [CONTRIBUTING.md](https://github.com/bunnyfap/client/blob/master/CONTRIBUTING.md). 
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**. Below is a quick start to contributing to Bunnyfap; however, we do recommend you go through the [CONTRIBUTING.md](https://github.com/bunnyfap/bf-client/blob/master/CONTRIBUTING.md). 
 
 1. Fork the Project
 2. Create your Feature Branch
@@ -163,7 +163,7 @@ We rely on community donations through [Patreon](http://patreon.com/bunnyfap) to
 <!-- LICENSE -->
 ## License
 
-Distributed under the GNU GPLv3.0 License. See [LICENSE](https://github.com/bunnyfap/client/blob/master/LICENSE) for more information.
+Distributed under the GNU GPLv3.0 License. See [LICENSE](https://github.com/bunnyfap/bf-client/blob/master/LICENSE) for more information.
 
 
 <!-- CONTACT -->
@@ -174,7 +174,7 @@ If you have any questions you can reach us at one of  the following places.
 * [E-mail](info@bunnyfap.com)
 * [Twitter](https://twitter.com/bunnyfap)
 
-Project Link: [https://github.com/bunnyfap/client](https://github.com/bunnyfap/client)
+Project Link: [https://github.com/bunnyfap/bf-client](https://github.com/bunnyfap/bf-client)
 
 <!-- ACKNOWLEDGEMENTS 
 ## Acknowledgements
@@ -190,15 +190,15 @@ Project Link: [https://github.com/bunnyfap/client](https://github.com/bunnyfap/c
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/github_username/repo.svg?style=for-the-badge
-[contributors-url]: https://github.com/bunnyfap/client/repo/graphs/contributors
+[contributors-url]: https://github.com/bunnyfap/bf-client/repo/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/github_username/repo.svg?style=for-the-badge
-[forks-url]: https://github.com/bunnyfap/client/repo/network/members
+[forks-url]: https://github.com/bunnyfap/bf-client/repo/network/members
 [stars-shield]: https://img.shields.io/github/stars/github_username/repo.svg?style=for-the-badge
-[stars-url]: https://github.com/bunnyfap/client/repo/stargazers
+[stars-url]: https://github.com/bunnyfap/bf-client/repo/stargazers
 [issues-shield]: https://img.shields.io/github/issues/github_username/repo.svg?style=for-the-badge
-[issues-url]: https://github.com/bunnyfap/client/repo/issues
+[issues-url]: https://github.com/bunnyfap/bf-client/repo/issues
 [license-shield]: https://img.shields.io/github/license/github_username/repo.svg?style=for-the-badge
-[license-url]: https://github.com/bunnyfap/client/repo/blob/master/LICENSE.txt
+[license-url]: https://github.com/bunnyfap/bf-client/repo/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/github_username
 

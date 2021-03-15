@@ -87,8 +87,8 @@ module.exports = {
   ],
 
   axios:{
-    // baseURL:'https://api.bunnyfap.com'
-    baseURL:'http://localhost:8000'
+    baseURL:'https://api.bunnyfap.com'
+    // baseURL:'http://localhost:8000'
   },
 
   seo: {

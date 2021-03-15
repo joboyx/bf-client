@@ -14,6 +14,10 @@
           <h1 class="font-weight-light grey--text text--lighten-3">Check our <a href="https://discord.gg/9mRdZ6M"> Discord</a> for updates. We'll be back soon :)</h1>
           </v-flex>
 
+          <v-flex xs12 class="text-xs-center">
+          <h1 class="font-weight-light grey--text text--lighten-3 title">This page will automatically refresh once we're back.</h1>
+          </v-flex>
+
         </v-layout>
       </v-container>
 

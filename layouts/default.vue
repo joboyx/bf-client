@@ -7,7 +7,7 @@
 
     <!-- <v-content :class="color_scheme" v-if="isLoggedIn() || $route.query.token" > -->
     <v-content :class="color_scheme">
-      <v-container fluid>
+      <v-container fluid v-if="!maintenance">
         
         <nuxt />
       </v-container>
@@ -23,6 +23,7 @@
 
 <script>
 import Navigation from '@/components/infrastructure/Navigation'
+// import Maintenance from '@/components/infrastructure/Maintenance'
 import { mapGetters } from 'vuex'
 import { mapActions } from 'vuex'
 import CookieLaw from 'vue-cookie-law'
@@ -33,7 +34,9 @@ export default {
       return {
         color_scheme: 'grey darken-4',
         app_color_theme: true,
-        ready: false
+        ready: false,
+        maintenance: false,
+        serverPing: '',
       }
     },
   methods:{
@@ -48,6 +51,18 @@ export default {
             this.color_scheme = 'grey darken-4'
             this.app_color_theme = true
         },
+        heartbeat(){
+          this.$axios.$post('/api/user/heartbeat', {}, {})
+            .then((res)=>{
+              clearInterval(this.serverPing)
+              location.reload()
+              // console.log("Alive")
+            })
+            .catch((err)=>{
+                // this.$router.push('/maintenance')
+                // this.maintenance = true
+            })
+        }
   },
   mounted(){
     // console.log("Token: " + this.getToken())
@@ -77,6 +92,17 @@ export default {
       this.ready = true
       // console.log("Not logged in and cannot get a security token.")
     }
+  },
+  beforeCreate(){
+      this.$axios.$post('/api/user/heartbeat', {}, {})
+        .then((res)=>{
+
+        })
+        .catch((err)=>{
+          this.maintenance = true
+          this.$nuxt.setLayout('maintenance')
+          this.serverPing = setInterval(this.heartbeat, 5000)
+        })
   }
 }
 </script>

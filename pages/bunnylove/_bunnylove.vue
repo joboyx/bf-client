@@ -241,7 +241,7 @@
                         <v-layout class="font-weight-light subheading text-xs-" -center>
                             <ul>
                                 <!-- <li class="mb-1">Closed beta sign up key<sup><span>&#65121;</span></sup></li> -->
-                                <li class="mb-1">Block unwanted tag content</li>
+                                <!-- <li class="mb-1">Block unwanted tag content</li> -->
                                 <li class="mb-1">No ads</li>
                                 <li class="mb-1"> Receive 50 carrots per month<sup><span>&#65121;</span></sup></li>
                                 <li class="mb-1"> Create 15 additional lists</li>
@@ -286,7 +286,7 @@
                         <v-layout class="font-weight-light subheading text-xs-" -center>
                             <ul>
                                 <!-- <li class="mb-1">Closed beta sign up key</li> -->
-                                <li class="mb-1">Block unwanted tag content</li>
+                                <!-- <li class="mb-1">Block unwanted tag content</li> -->
                                 <li class="mb-1">No ads</li>
                                 <li class="mb-1"> Receive 500 carrots per month</li>
                                 <li class="mb-1"> Create 15 additional lists</li>

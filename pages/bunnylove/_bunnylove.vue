@@ -133,7 +133,7 @@
                             </v-btn>
 
                         </v-layout>
-                        <v-layout justify-center><span class="title font-weight-light ma-3">or</span></v-layout>
+                        <!-- <v-layout justify-center><span class="title font-weight-light ma-3">or</span></v-layout>
                         <v-layout justify-center align-center class="">
                             <div>
                                 <v-layout align-center>
@@ -163,14 +163,14 @@
                             </v-btn>
 
 
-                        </v-layout>
-                        <v-layout justify-center class="text-xs-center font-weight-thin caption"><span class="underline-on-hover" @click="!isGuest() ? $router.push({ name: 'marketplace-shop-browse'}) : $bus.emit('signupPrompt')">Buy more carrots</span> </v-layout>
+                        </v-layout> -->
+                        <!-- <v-layout justify-center class="text-xs-center font-weight-thin caption"><span class="underline-on-hover" @click="!isGuest() ? $router.push({ name: 'marketplace-shop-browse'}) : $bus.emit('signupPrompt')">Buy more carrots</span> </v-layout> -->
 
                         <v-divider class="ma-3"></v-divider>
                         <v-layout class="font-weight-light subheading text-xs-" -center>
                             <ul>
                                 <!-- <li class="mb-1">Closed beta sign up key<sup><span>&#65121;</span></sup></li> -->
-                                <li class="mb-1">Block unwanted tag content</li>
+                                <li class="mb-1">A tip jar if you enjoy Bunnyfap</li>
                                 <li class="mb-1">No ads</li>
                                 <li class="mb-1"> Receive 20 carrots per month<sup><span>&#65121;</span></sup></li>
                             </ul>

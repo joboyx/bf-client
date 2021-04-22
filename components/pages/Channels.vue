@@ -155,7 +155,7 @@ export default {
          // @vuese
         // Bans a specific channel and sends this to the server.
         ban(item){
-            if(this.user.tier === 0){
+            if(this.user.tier === 0 && false){
                 this.blp()
             } else{
 

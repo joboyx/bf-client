@@ -166,7 +166,7 @@ export default {
         // @vuese
         // Bans a specific tag and sends this to the server (requires premium).
         ban(item){
-            if(this.user.tier === 0){
+            if(this.user.tier === 0 && false){
                 this.blp()
             } else{
 

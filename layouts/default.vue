@@ -52,9 +52,10 @@ export default {
             this.app_color_theme = true
         },
         heartbeat(){
+          let self = this
           this.$axios.$post('/api/user/heartbeat', {}, {})
             .then((res)=>{
-              clearInterval(this.serverPing)
+              clearInterval(self.serverPing)
               location.reload()
               // console.log("Alive")
             })

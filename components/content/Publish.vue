@@ -339,11 +339,17 @@ export default {
             }else{
                 let vid = document.getElementById('duration_id')
                 vid.src = this.data[count].url
+                vid.onerror = function(){
+                    // console.log("Error")
+                    self.duration += 1
+                    self.calculate_duration(count+1)
+                }
                 vid.onloadedmetadata = function() {
                     // console.log(vid.duration)
                     self.duration += vid.duration
                     // vid.parentNode.removeChild(vid);
                     vid.src = ""
+                    // console.log("Video loaded")
                     self.calculate_duration(count+1)
                 };
             }

@@ -178,6 +178,15 @@
                     </v-list-tile-content>
 
                   </v-list-tile>
+
+                  <v-divider></v-divider>
+
+                  <v-list-tile v-if="autoPlayToggle">
+                    <v-list-tile-content>
+                      <v-switch    v-model="skipDisliked" label="Skip disliked"> </v-switch>
+                    </v-list-tile-content>
+                  </v-list-tile>
+
                 </v-list>
 
               </v-card>
@@ -449,6 +458,9 @@ export default {
             // @vuese
             // Whether autoplay is true or not.
             autoPlayToggle:false,
+            // @vuese
+            // Whether skipping disliked resources in AutoFap mode is on or not.
+            skipDisliked:false,
             // @vuese
             // Whether the tagging box is open or not.
             taggingOpen:false,

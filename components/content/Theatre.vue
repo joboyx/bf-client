@@ -833,9 +833,9 @@ export default {
                 // contole.log("Reaction failed")
             })
         }
-        // if(reaction==='dislike'){
-          //   this.next()
-        // }
+          if(reaction==='dislike' && this.$refs.titlebar.skipDisliked && this.autoPlayToggle){
+            this.next()
+          }
         }
       },
       // @vuese

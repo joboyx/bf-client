@@ -45,7 +45,7 @@ v-bind:enabled="{ swipe: true, swipeup:false, rotate: false }"
         :src="item.url" autoplay :muted='!mute' playsinline
         > <source></video>
         <iframe v-if="item.type==='video'" :src="item.url" allow="autoplay" frameborder="0" :width="getWindowHeight()*1.647" height="100%" scrolling="no" allowfullscreen
-        style="margin-left:auto; margin-right:auto; display:block" :id="item.url" class="hidden-sm-and-down"
+        style="margin-left:auto; margin-right:auto; display:block" :id="item.url" name="video_iframe"
         ></iframe>
 <!-- +'?autoplay=1' -->
         <!-- <iframe v-if="item.type==='video'" :src="item.url" frameborder="0" width="100%" height="100%" scrolling="no" allowfullscreen
@@ -833,9 +833,9 @@ export default {
                 // contole.log("Reaction failed")
             })
         }
-        // if(reaction==='dislike'){
-          //   this.next()
-        // }
+          if(reaction==='dislike' && this.$refs.titlebar.skipDisliked && this.autoPlayToggle){
+            this.next()
+          }
         }
       },
       // @vuese
@@ -1401,5 +1401,8 @@ color: white!important
   height:100%;
 }
 
+iframe[name="video_iframe"] {
+  width: 100vw;
+}
 
 </style>

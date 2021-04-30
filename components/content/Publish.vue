@@ -319,13 +319,14 @@ export default {
     // @vuese
     // Will iterate over all resources, and add up the duration of each resource. If an item resource does not have a duration, which is the case of a webm which has not be pre-determined, it will load that webm and retrieve the metadata for it.
     calculate_duration(count){
-
+        console.log("Calculate duration" + count)
         let self = this
         if(count===0){
             this.duration = 0
         }
         if(count === this.data.length){
             this.validate()
+            // console.log("publish")
             this.publish_loading = true
             return true
         }else if (this.data[count].type != 'web_video'){
@@ -350,6 +351,7 @@ export default {
                     // vid.parentNode.removeChild(vid);
                     vid.src = ""
                     // console.log("Video loaded")
+                    vid.onerror = function(){}
                     self.calculate_duration(count+1)
                 };
             }

@@ -28,7 +28,7 @@
                                 <v-flex xs12 text-xs-center>
                                     <v-layout justify-center class="title font-weight-thin"><span class="mt-2">Start AutoFap</span> <v-icon right large>play_circle_filled</v-icon></v-layout>
                                 </v-flex>
-                                <v-flex xs12 text-xs-center v-if="false">
+                                <!-- <v-flex xs12 text-xs-center v-if="false">
                                     <vue-typer
                                     :text='taglines'
                                     :repeat='Infinity'
@@ -43,7 +43,7 @@
                                     caret-animation='smooth'
                                     class="headline font-weight-thin"
                                     ></vue-typer>
-                                </v-flex>
+                                </v-flex> -->
                             </v-layout>
                         </v-container>
                     </v-card>

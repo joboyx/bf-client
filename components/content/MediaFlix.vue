@@ -388,10 +388,10 @@
             indeterminate
             ></v-progress-circular>
         </v-layout>
-        
+<!--         
         <v-layout justify-center v-if="loading && !resources && name==='Recommended'" class="mt-5">
         <Typer></Typer>
-        </v-layout>
+        </v-layout> -->
 
 
                     <v-btn
@@ -434,7 +434,6 @@ import ImageRow from '@/components/content/ImageRow'
 import FlickRow from '@/components/content/FlickRow'
 import axios from 'axios'
 import { mapGetters } from 'vuex'
-import Typer from '@/components/modules/Typer'
 // import { categorization } from '@/data/search_items_sorted'
 import BunnyLovePromo from '@/components/modules/BunnyLovePromo'
 
@@ -526,7 +525,7 @@ export default {
             current_sort:"Top"
         }
     },
-    components:{ImageRow,Typer, FlickRow,BunnyLovePromo},
+    components:{ImageRow, FlickRow,BunnyLovePromo},
     methods:{
         ...mapGetters('auth',['isLoggedIn', 'authenticationToken', 'getUser']),
         scrollToTop () {

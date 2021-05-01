@@ -382,9 +382,9 @@
             ></v-progress-circular>
         </v-layout>
         
-        <v-layout justify-center v-if="loading && !resources && name==='Recommended'" class="mt-5">
+        <!-- <v-layout justify-center v-if="loading && !resources && name==='Recommended'" class="mt-5">
         <Typer></Typer>
-        </v-layout>
+        </v-layout> -->
 
 
                     <v-btn
@@ -428,7 +428,6 @@
 import ImageRow from '@/components/content/ImageRow'
 import axios from 'axios'
 import { mapGetters } from 'vuex'
-import Typer from '@/components/modules/Typer'
 // import { categorization } from '@/data/search_items_sorted'
 import BunnyLovePromo from '@/components/modules/BunnyLovePromo'
 
@@ -441,7 +440,7 @@ import BunnyLovePromo from '@/components/modules/BunnyLovePromo'
  */
 
 export default {
-    props:['title','data_endpoint', 'data_endpoint_auth', 'description', 'search', 'tagline', 'cats', 'tags_imported', 'betterfap', 'no_first_card', 'data', 'index'],
+    props:['title','data_endpoint', 'data_endpoint_auth', 'description', 'search', 'tagline', 'cats', 'tags_imported', 'betterfap', 'no_first_card', 'data', 'index', 'watch'],
     mounted(){
         self = this
 
@@ -607,7 +606,7 @@ export default {
 
         }
     },
-    components:{ImageRow,Typer,BunnyLovePromo},
+    components:{ImageRow,BunnyLovePromo},
     methods:{
         ...mapGetters('auth',['isLoggedIn', 'authenticationToken']),
             // @vuese
@@ -725,23 +724,21 @@ export default {
             this.category_search = ''
             this.show_refresh = false
 
-            // console.log("Getting data")
 
             this.$axios.$post(this.get_endpoint(), this.get_body(), this.get_headers())
                 .then((res)=>{
-                    // console.log(res)
                     if(res.data.length>0){
                         self.loading_message = ''
                         if(self.resources.data.length > 0){
-                            for (let item of res.data){
-                                self.resources.data.splice(-1,0,item)
-                            }
+                            // for (let item of res.data){
+                            //     self.resources.data.splice(-1,0,item)
+                            // }
+                            self.resources.data = self.resources.data.concat(res.data)
                         }else{
                             self.resources = {data:res.data}
                         }
                         self.loading = false
                         
-
                         if(res.outstanding){
                                 self.outstanding = res.outstanding
                         }
@@ -814,7 +811,7 @@ export default {
                                 self.outstanding = res.outstanding
                             }
 
-                            self.resources = {data: self.resources.data.concat(res.data)}
+                            self.resources.data = self.resources.data.concat(res.data)
                             self.data_lock = 0
                             // self.outstanding_server = res.outstanding
 
@@ -1103,18 +1100,30 @@ export default {
             self.user = arg
         })
 
-        this.$bus.emit('get_user')
+        // this.$bus.emit('get_user')
 
-        if('data' in this.$route.params){
-            this.from_home_page = true
-            this.resources['data'] = this.$route.params.data
-            this.openTheatre(this.$route.params.index)
-            for (let item of this.resources['data']){
-                this.outstanding.push(item._id)
-            }
-            this.loading = false
-            this.getting_data = true
-            this.data_lock = 1
+        // if('data' in this.$route.params){
+        //     this.from_home_page = true
+        //     this.resources['data'] = this.$route.params.data
+        //     this.openTheatre(this.$route.params.index)
+        //     for (let item of this.resources['data']){
+        //         this.outstanding.push(item._id)
+        //     }
+        //     this.loading = false
+        //     this.getting_data = true
+        //     this.data_lock = 1
+        // }
+
+        if(this.watch){
+            // this.from_home_page = true
+            this.resources.data.unshift(this.data)
+            this.openTheatre(0)
+            this.outstanding.push(this.data._id)
+            // this.loading = false
+            // this.getting_data = true
+            // this.data_lock = 1
+            // console.log("Single resource")
+            // console.log(this.data)
         }
 
         this.$axios.$get('/api/user',this.get_headers())
@@ -1127,23 +1136,23 @@ export default {
                     self.star_categories = res.user.star_categories
                     self.star_tags = res.user.star_tags
 
-                    for(let i=0;i<self.art_styles.length;i++){
-                        if(res.user.art.includes(self.art_styles['type'])){
-                            self.art_styles['active'] = true
-                        }
-                    }
+                    // for(let i=0;i<self.art_styles.length;i++){
+                    //     if(res.user.art.includes(self.art_styles['type'])){
+                    //         self.art_styles['active'] = true
+                    //     }
+                    // }
 
-                    for(let i=0;i<self.orientation_styles.length;i++){
-                        if(res.user.orientation.includes(self.orientation_styles['type'])){
-                            self.orientation_styles['active'] = true
-                        }
-                    }
+                    // for(let i=0;i<self.orientation_styles.length;i++){
+                    //     if(res.user.orientation.includes(self.orientation_styles['type'])){
+                    //         self.orientation_styles['active'] = true
+                    //     }
+                    // }
 
-                    for(let i=0;i<self.media_types.length;i++){
-                        if(res.user.type.includes(self.media_types['type'])){
-                            self.media_types['active'] = true
-                        }
-                    }
+                    // for(let i=0;i<self.media_types.length;i++){
+                    //     if(res.user.type.includes(self.media_types['type'])){
+                    //         self.media_types['active'] = true
+                    //     }
+                    // }
 
                 }
 
@@ -1182,6 +1191,7 @@ export default {
 
         this.$axios.$get('/api/tag/existing/search', this.get_headers())
             .then((res)=>{
+                // console.log(res)
                 res.data.splice(2,1)
                 this.category_items = res.data
             })

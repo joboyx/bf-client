@@ -425,12 +425,15 @@
 
 <script>
 // import { genres } from '@/data/genres'
-import ImageRow from '@/components/content/ImageRow'
+const ImageRow = () => import('@/components/content/ImageRow')
+// import ImageRow from '@/components/content/ImageRow'
 import axios from 'axios'
 import { mapGetters } from 'vuex'
 // import { categorization } from '@/data/search_items_sorted'
-import BunnyLovePromo from '@/components/modules/BunnyLovePromo'
-import Multiselect from 'vue-multiselect'
+const BunnyLovePromo = () => import('@/components/modules/BunnyLovePromo')
+// import BunnyLovePromo from '@/components/modules/BunnyLovePromo'
+const Multiselect = () => import('vue-multiselect')
+// import Multiselect from 'vue-multiselect'
 
 
 /**

@@ -76,8 +76,10 @@
 //     require('lightgallery.js/dist/css/lightgallery.css')
 // }
 
-import ImageCard from '@/components/content/ImageCard'
-import Theatre from '@/components/content/Theatre'
+const ImageCard = () => import('@/components/content/ImageCard')
+// import ImageCard from '@/components/content/ImageCard'
+const Theatre = () => import('@/components/content/Theatre')
+// import Theatre from '@/components/content/Theatre'
 // import SignUpAd from '@/components/SignUpAd'
 /**
  * @vuese

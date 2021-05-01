@@ -157,9 +157,12 @@ import { mapGetters } from 'vuex'
 import axios from 'axios'
 import { setInterval, setTimeout } from 'timers';
 // import { tags } from '@/data/tags'
-import Tagging from '@/components/moderation/Tagging'
-import Reporting from '@/components/moderation/Reporting'
-import TitleBar from '@/components/content/TitleBar'
+const Tagging = () => import('@/components/moderation/Tagging')
+// import Tagging from '@/components/moderation/Tagging'
+const Reporting = () => import('@/components/moderation/Reporting')
+// import Reporting from '@/components/moderation/Reporting'
+const TitleBar = () => import('@/components/content/TitleBar')
+// import TitleBar from '@/components/content/TitleBar'
 // import goTo from '@/node_modules/vuetify/lib/components/Vuetify/goTo'
 
 // import { Slider, SliderItem } from 'vue-easy-slider'

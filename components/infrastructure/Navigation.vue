@@ -490,14 +490,19 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 // import SignInUp from '@/components/SignInUp'
-import axios from 'axios'
+// import axios from 'axios'
 // import { tags } from '@/data/search_items'
 // import { search_items } from '@/data/search_items_sorted'
+// const { rewards } = () => import('@/components/modules/rewards')
+// import  Login  from '@/components/modules/Login'
+// import  Signup  from '@/components/modules/Signup'
+// import  AcceptToS  from '@/components/modules/AcceptToS'
+// import Multiselect from 'vue-multiselect'
 import { rewards } from '@/components/modules/rewards'
-import  Login  from '@/components/modules/Login'
-import  Signup  from '@/components/modules/Signup'
-import  AcceptToS  from '@/components/modules/AcceptToS'
-import Multiselect from 'vue-multiselect'
+const Login = () => import('@/components/modules/Login')
+const Signup = () => import('@/components/modules/Signup')
+const AcceptToS = () => import('@/components/modules/AcceptToS')
+const Multiselect = () => import('vue-multiselect')
 
 /**
  * @vuese

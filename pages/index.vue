@@ -78,7 +78,7 @@ We just wanted to welcome you to BunnyFap!
 
 <script>
 import Media from '@/components/content/Media'
-import ContentTabs from '@/components/infrastructure/ContentTabs'
+const ContentTabs = () => import('@/components/infrastructure/ContentTabs')
 
 export default {
     components:{Media, ContentTabs},

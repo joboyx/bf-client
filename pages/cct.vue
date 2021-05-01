@@ -76,10 +76,13 @@
 
 
 <script>
-import ContentTabs from '@/components/infrastructure/ContentTabs'
-import Categories from '@/components/pages/Categories'
-import Tags from '@/components/pages/Tags'
-import Channels from '@/components/pages/Channels'
+// import Categories from '@/components/pages/Categories'
+// import Tags from '@/components/pages/Tags'
+// import Channels from '@/components/pages/Channels'
+const ContentTabs = () => import('@/components/infrastructure/ContentTabs')
+const Categories = () => import('@/components/pages/Categories')
+const Tags = () => import('@/components/pages/Tags')
+const Channels = () => import('@/components/pages/Channels')
 
 export default {
     components:{ContentTabs, Categories, Tags, Channels},

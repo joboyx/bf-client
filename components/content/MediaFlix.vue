@@ -430,12 +430,12 @@
 
 <script>
 // import { genres } from '@/data/genres'
-import ImageRow from '@/components/content/ImageRow'
 import FlickRow from '@/components/content/FlickRow'
 import axios from 'axios'
 import { mapGetters } from 'vuex'
 // import { categorization } from '@/data/search_items_sorted'
-import BunnyLovePromo from '@/components/modules/BunnyLovePromo'
+const BunnyLovePromo = () => import('@/components/modules/BunnyLovePromo')
+// import BunnyLovePromo from '@/components/modules/BunnyLovePromo'
 
 /**
  * @vuese
@@ -525,7 +525,7 @@ export default {
             current_sort:"Top"
         }
     },
-    components:{ImageRow, FlickRow,BunnyLovePromo},
+    components:{FlickRow,BunnyLovePromo},
     methods:{
         ...mapGetters('auth',['isLoggedIn', 'authenticationToken', 'getUser']),
         scrollToTop () {

@@ -430,7 +430,7 @@ import axios from 'axios'
 import { mapGetters } from 'vuex'
 // import { categorization } from '@/data/search_items_sorted'
 import BunnyLovePromo from '@/components/modules/BunnyLovePromo'
-
+import Multiselect from 'vue-multiselect'
 
 
 /**
@@ -441,6 +441,7 @@ import BunnyLovePromo from '@/components/modules/BunnyLovePromo'
 
 export default {
     props:['title','data_endpoint', 'data_endpoint_auth', 'description', 'search', 'tagline', 'cats', 'tags_imported', 'betterfap', 'no_first_card', 'data', 'index', 'watch'],
+    components:{ImageRow,BunnyLovePromo, Multiselect},
     mounted(){
         self = this
 
@@ -606,7 +607,6 @@ export default {
 
         }
     },
-    components:{ImageRow,BunnyLovePromo},
     methods:{
         ...mapGetters('auth',['isLoggedIn', 'authenticationToken']),
             // @vuese
@@ -1215,7 +1215,7 @@ export default {
     
 }
 </script>
-
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style scoped>
 .clicked {
    padding:10px;

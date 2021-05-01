@@ -497,6 +497,7 @@ import { rewards } from '@/components/modules/rewards'
 import  Login  from '@/components/modules/Login'
 import  Signup  from '@/components/modules/Signup'
 import  AcceptToS  from '@/components/modules/AcceptToS'
+import Multiselect from 'vue-multiselect'
 
 /**
  * @vuese
@@ -519,7 +520,7 @@ import  AcceptToS  from '@/components/modules/AcceptToS'
  * @group infrastructure
  */
 export default {
-    components:{Login,Signup,AcceptToS},
+    components:{Login,Signup,AcceptToS, Multiselect},
     data(){
         return{ // @vuese
             // Whether the user has a notification in the form of a daily streak reward waiting.

@@ -161,7 +161,7 @@
             <v-container fill-height class="mb-5">
                 <v-layout style="height:70vh; width:100%">
 
-            <vue-word-cloud
+            <wordcloud
             v-if="words.length>0"
             :words="words"
             :color="([, weight]) => weight > 0.8 ? '#9d8022' : weight > 0.3 ? '#B29126' : '#c7a22a'"
@@ -169,7 +169,7 @@
             :spacing="0.3"
 
             :rotation="1"
-            ></vue-word-cloud>
+            ></wordcloud>
                 </v-layout>
             <!-- style="position:absolute; height:100%;width:100%;" -->
                 </v-container>
@@ -227,6 +227,8 @@
 
 import axios from 'axios'
 import { mapGetters } from 'vuex'
+import wordcloud from 'vuewordcloud'
+// import  Plotly  from '@/components/modules/Plotly'
 
 /**
  * @vuese
@@ -235,7 +237,9 @@ import { mapGetters } from 'vuex'
  */
 export default {
     components:{
-        'Plotly':()=> import('@/components/modules/Plotly.vue')
+        'Plotly':()=> import('@/components/modules/Plotly.vue'),
+        wordcloud,
+        // Plotly
     },
 
     data(){

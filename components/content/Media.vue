@@ -425,8 +425,8 @@
 
 <script>
 // import { genres } from '@/data/genres'
-const ImageRow = () => import('@/components/content/ImageRow')
-// import ImageRow from '@/components/content/ImageRow'
+// const ImageRow = () => import('@/components/content/ImageRow')
+import ImageRow from '@/components/content/ImageRow'
 import axios from 'axios'
 import { mapGetters } from 'vuex'
 // import { categorization } from '@/data/search_items_sorted'

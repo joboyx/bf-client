@@ -151,13 +151,13 @@
 
 <!-- </v-layout> -->
 
-<v-layout style="color: #fff; margin-top:120px" class="display-3 font-weight-bold justify-center mb-5">Tag Word Cloud</v-layout>
+<!-- <v-layout style="color: #fff; margin-top:120px" class="display-3 font-weight-bold justify-center mb-5">Tag Word Cloud</v-layout> -->
 
 <!-- {{general}} -->
 
 
 
-
+<!-- 
             <v-container fill-height class="mb-5">
                 <v-layout style="height:70vh; width:100%">
 
@@ -171,16 +171,16 @@
             :rotation="1"
             ></wordcloud>
                 </v-layout>
-            <!-- style="position:absolute; height:100%;width:100%;" -->
-                </v-container>
+            <!-- style="position:absolute; height:100%;width:100%;" 
+                </v-container> -->
 
-<v-layout class="display-3 font-weight-light text-xs-center" justify-center v-if="dates.length>0">
+<!-- <v-layout class="display-3 font-weight-light text-xs-center" justify-center v-if="dates.length>0"> -->
 <!-- Activity -->
-<v-layout style="color: #fff" class="display-3 mt-5 font-weight-bold justify-center">Activity</v-layout>
+<!-- <v-layout style="color: #fff" class="display-3 mt-5 font-weight-bold justify-center">Activity</v-layout> -->
 
-</v-layout>
+<!-- </v-layout> -->
 
-<v-layout justify-center v-if="dates.length>0" class="">
+<!-- <v-layout justify-center v-if="dates.length>0" class="">
     <no-ssr placeholder="loading...">
         <Plotly :data="activity_data" :layout="activity_layout" :options="activity_options" ></Plotly>
     </no-ssr>
@@ -189,12 +189,12 @@
 
 <v-layout style="color: #fff; margin-top:120px" class="display-3 font-weight-bold justify-center">Tag Sentiment</v-layout>
 
-<v-layout class="display-3 font-weight-light text-xs-center "  justify-center v-if="dates.length>0">
+<v-layout class="display-3 font-weight-light text-xs-center "  justify-center v-if="dates.length>0"> -->
 <!-- what do I like? -->
-    <no-ssr placeholder="loading...">
+    <!-- <no-ssr placeholder="loading...">
                 <Plotly :data="scatter_tag_data" :layout="scatter_tag_layout" :options="scatter_tag_options" ></Plotly>
     </no-ssr>
-</v-layout >
+</v-layout > -->
 
 
 
@@ -227,18 +227,22 @@
 
 import axios from 'axios'
 import { mapGetters } from 'vuex'
-import wordcloud from 'vuewordcloud'
+// import wordcloud from 'vuewordcloud'
 // import  Plotly  from '@/components/modules/Plotly'
 
 /**
  * @vuese
  * Shows user statistics for premium members, e.g. top tags, wordcloud, activity, etc.  
+ * Install:
+ *   "@statnett/vue-plotly": "^0.3.2",
+ *    "vuewordcloud": "^18.7.11",
  * @group Pages
+
  */
 export default {
     components:{
-        'Plotly':()=> import('@/components/modules/Plotly.vue'),
-        wordcloud,
+        // 'Plotly':()=> import('@/components/modules/Plotly.vue'),
+        // wordcloud,
         // Plotly
     },
 

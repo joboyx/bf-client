@@ -994,7 +994,7 @@ export default {
     computed:{
           menuProps() {
                 return !this.search_string ? {value: false} : {}
-            }
+            },
     },
     methods:{
         // @vuese
@@ -1309,10 +1309,6 @@ export default {
     },
 
   created(){
-    if(!this.isLoggedIn()){
-        // this.$router.push('/login')
-    }
-
     let h = {headers:{Authorization : this.authenticationToken()}}
 
     if(!this.isGuest()){

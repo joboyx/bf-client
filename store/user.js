@@ -8,6 +8,9 @@ export const state = () => ({
 export const getters = {
     getUser(state){
         return state.user
+    },
+    getPreferences(state){
+        
     }
 }
 
@@ -17,6 +20,9 @@ export const mutations = {
     },
     finishTutorial(state, tutorial_){
         state.user.tutorial[tutorial_] = false
+    },
+    updatePreferences(state, preference_toggle){
+
     }
 }
 

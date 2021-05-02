@@ -76,8 +76,8 @@
 //     require('lightgallery.js/dist/css/lightgallery.css')
 // }
 
-const ImageCard = () => import('@/components/content/ImageCard')
-// import ImageCard from '@/components/content/ImageCard'
+// const ImageCard = () => import('@/components/content/ImageCard')
+import ImageCard from '@/components/content/ImageCard'
 const Theatre = () => import('@/components/content/Theatre')
 // import Theatre from '@/components/content/Theatre'
 // import SignUpAd from '@/components/SignUpAd'
@@ -115,6 +115,7 @@ export default {
             console.log() // Do not remove -> Doesn't work without.
             //const elem = document.getElementById(id)
             //window.lightGallery(elem, {dynamic:true, dynamicEl: data, index:parseInt(i)})
+            
             this.$refs.lb.openModal(i)
         },
         // @vuese

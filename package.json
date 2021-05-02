@@ -9,13 +9,11 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "build-report": "vue-cli-service build --report"
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.9.3",
     "@nuxtjs/google-analytics": "^2.2.3",
-    "@statnett/vue-plotly": "^0.3.2",
     "js-cookie": "^2.2.1",
     "nuxt": "^2.11.0",
     "nuxt-seo": "^1.2.2",
@@ -37,7 +35,6 @@
     "vuetify": "^1.5.22",
     "vuetify-loader": "^1.4.3",
     "vuetify-stylus-fixed-table-header": "^1.1.1",
-    "vuewordcloud": "^18.7.11",
     "vuex": "^3.1.2",
     "vuex-persist": "^2.2.0"
   },

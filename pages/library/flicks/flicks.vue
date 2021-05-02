@@ -127,13 +127,15 @@ Please try again in a few seconds.
     </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 
 import FlickRow from '@/components/content/FlickRow'
+// const LibraryTabs = () => import('@/components/infrastructure/LibraryTabs')
 import LibraryTabs from '@/components/infrastructure/LibraryTabs'
-import { mapGetters } from 'vuex'
-import MediaFlix from '@/components/content/MediaFlix'
-import axios from 'axios'
-import BunnyLovePromo from '@/components/modules/BunnyLovePromo'
+const MediaFlix = () => import('@/components/content/MediaFlix')
+// import MediaFlix from '@/components/content/MediaFlix'
+const BunnyLovePromo = () => import('@/components/modules/BunnyLovePromo')
+// import BunnyLovePromo from '@/components/modules/BunnyLovePromo'
 
 export default {
 components:{FlickRow, LibraryTabs, MediaFlix, BunnyLovePromo},

@@ -48,12 +48,12 @@ export default {
         ...mapGetters('auth',['isLoggedIn', 'authenticationToken'])
     },
     head: {
-    title: 'Explore',
+    title: 'Explore the best Porn and Pornstars',
     meta: [
       {
         hid: 'description',
         name: 'description',
-        content: 'Explore your Porn tastes. We show you the best porn from over 3000 different sources.'
+        content: 'Explore and search the hottest and best Porn.'
       }
     ],
   }

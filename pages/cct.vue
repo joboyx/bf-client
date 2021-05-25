@@ -108,7 +108,7 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: 'Look for Porn that you like. Browse 20+ Categories, 200+ Tags, and 3000+ Channels!'
+        content: 'Find Porn that is made for you. Browse 20+ Categories, 200+ Tags, and 3000+ Channels!'
       }
     ],
   }

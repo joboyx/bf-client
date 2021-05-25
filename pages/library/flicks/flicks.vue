@@ -200,6 +200,16 @@ components:{FlickRow, LibraryTabs, MediaFlix, BunnyLovePromo},
         })
 
         this.$bus.emit('get_user')
+    },
+    head () {
+        return {
+            titleTemplate: `Flix | Your HD Porn Video & Image Library XXX - Bunnyfap`,
+            meta: [{
+                hid: 'description',
+                name: 'description',
+                content: `Your Porn Collections, Images, Videos, and Flix.`
+            }],
+        }
     }
 }
 </script>

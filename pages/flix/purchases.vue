@@ -37,6 +37,16 @@ export default {
         if(!this.isLoggedIn()){
             this.$router.push('/top')
         }
+    },
+    head () {
+        return {
+            titleTemplate: `Porn Flix: HD Porn Video & Image compilations XXX - Bunnyfap`,
+            meta: [{
+                hid: 'description',
+                name: 'description',
+                content: `Your HD Porn Flix Purchases.`
+            }],
+        }
     }
 }
 </script>

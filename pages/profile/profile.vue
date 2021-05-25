@@ -476,6 +476,16 @@ export default {
                 console.log(err)
             })
 
+    },
+    head () {
+        return {
+            titleTemplate: `Profile - Bunnyfap`,
+            meta: [{
+                hid: 'description',
+                name: 'description',
+                content: `Your Porn browsing and viewing preferences.`
+            }],
+        }
     }
 }
 </script>

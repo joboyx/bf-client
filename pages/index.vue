@@ -97,12 +97,13 @@ export default {
         }
     },
     head: {
-    title: 'BunnyFap - Porn Made Simple',
+    title: 'Bunnyfap: Porn Made Simple - Unlimited Free HD Porn Videos and Images.',
     meta: [
       {
         hid: 'description',
         name: 'description',
-        content: 'Bunnyfap is a powerful community driven platform powered by cutting edge artificial intelligence to provide you with content that makes you happy.'
+        content: 'Bunnyfap is the next generation porn platform, with unlimited HD Porn videos and images. Millions of hardore images and videos are added on a daily basis, streaming quickly and in high quality.'
+        // content: 'Bunnyfap is a powerful community driven platform powered by cutting edge artificial intelligence to provide you with content that makes you happy.'
       }
     ],
   }

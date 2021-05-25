@@ -26,6 +26,16 @@ export default {
             data_endpoint_auth:'/api/resource/top/auth',
             category:[this.$route.params.category]
         }
+    },
+    head () {
+        return {
+            titleTemplate: `${this.$route.params.category} HD Porn Videos & Images XXX - Bunnyfap`,
+            meta: [{
+                hid: 'description',
+                name: 'description',
+                content: `Watch unlimited ${this.$route.params.category} Porn in HD only at Bunnyfap. More added every day!`
+            }],
+        }
     }
 }
 </script>

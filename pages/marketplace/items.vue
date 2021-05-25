@@ -329,6 +329,16 @@ export default{
             console.log(err)
         })
 
+    },
+    head () {
+        return {
+            titleTemplate: `Backpack: Your Bunnyfap Items`,
+            meta: [{
+                hid: 'description',
+                name: 'description',
+                content: `Your Bunnyfap Items to Enhance your viewing experience.`
+            }],
+        }
     }
 }
 

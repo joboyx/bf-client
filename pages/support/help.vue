@@ -76,6 +76,16 @@ export default {
         return {
 
         }
+    },
+    head () {
+        return {
+            titleTemplate: `Help - Bunnyfap`,
+            meta: [{
+                hid: 'description',
+                name: 'description',
+                content: `Need some help navigating Bunnyfap? Check out this page.`
+            }],
+        }
     }
 }
 </script>

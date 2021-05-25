@@ -48,12 +48,12 @@ export default {
         ...mapGetters('auth',['isLoggedIn', 'authenticationToken'])
     },
 head: {
-    title: 'New on Bunnyfap',
+    title: 'The Latest Porn Videos and Pornstars on Bunnyfap',
     meta: [
       {
         hid: 'description',
         name: 'description',
-        content: 'View the latest content on Bunnyfap, sourced from over 3000 channels!'
+        content: 'View the latest porn on Bunnyfap. Over millions of videos!'
       }
     ],
   }

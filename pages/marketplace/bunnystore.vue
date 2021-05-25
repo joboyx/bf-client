@@ -187,6 +187,16 @@ export default{
         .catch((err)=>{
             console.log(err)
         })
+    },
+    head () {
+        return {
+            titleTemplate: `Porn Addons to Enhance your experience - Bunnyfap`,
+            meta: [{
+                hid: 'description',
+                name: 'description',
+                content: `Add these items to your profile to improve your Porn Experience.`
+            }],
+        }
     }
 }
 

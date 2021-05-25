@@ -36,6 +36,16 @@ export default {
             betterfap: true
         }
     },
+    head () {
+        return {
+            titleTemplate: `Your HD Porn Video & Image Library XXX - Bunnyfap`,
+            meta: [{
+                hid: 'description',
+                name: 'description',
+                content: `Porn Images and Videos which you absolutely love!`
+            }],
+        }
+    }
 
 }
 </script>

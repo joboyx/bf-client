@@ -37,7 +37,10 @@ export default {
     components: {
         Theatre
     },
-    async asyncData({$axios, req, route}) {
+    async asyncData({$axios, req, route, redirect}) {
+        if(!route.params.watch){
+            redirect('/')
+        }
         //60a15bdec0c33730b20550a0--TO-tu0kELgbr7sbrLyaOrikIkUhfjtjMhCbvlzGKY45BuZ-AolgVRzOe81-xwpPj5J3N77KpqrtJ17qBt56aA
         // 60a15bf7c0c33730b20553f6-zML0ZLVm6J8ErIAGGEY2DBOjCLFeiOsabHK52TpPHLN6WoiwYavlNUiWF671ZocWnSWdvCSG1X2bK9OKHDDxIQ
         // let resource = {}
@@ -58,7 +61,14 @@ export default {
             // token = { headers: { Authorization: 'Bearer 60a01b08c0c33730b2e20e3e-ssLCXvL0Rx2xvD0cP8CRdKGgD-zRp571upSKUlg_rC5NE071zhUOW9DNQ0QR_7e-L7HVOXQ-rzugutO2H3tNYA'}}
             token = {}
         }
-        let res = await $axios.$get('/api/resource/single/' + route.params.watch, token)
+
+        let res = {}
+        try {
+            res = await $axios.$get('/api/resource/single/' + route.params.watch, token)
+        } catch(err){
+            console.log(err)
+            redirect('/')
+        }
         // console.log(res)
         const resource = res.resource
         // console.log(resource)

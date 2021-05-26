@@ -405,8 +405,9 @@ export default{
         }
     },
     methods:{
-        ...mapGetters('auth',['isLoggedIn', 'authenticationToken', 'getUser']),
-      ...mapActions('auth',['finishTutorial']), 
+        ...mapGetters('auth',['isLoggedIn', 'authenticationToken']),
+        ...mapGetters('user',['getUser']),
+      ...mapActions('user',['finishTutorial']), 
         // @vuese
         // Called when the tutorial is skipped.
         skipTour(){

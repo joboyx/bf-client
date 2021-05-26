@@ -527,7 +527,8 @@ export default {
     },
     components:{FlickRow,BunnyLovePromo},
     methods:{
-        ...mapGetters('auth',['isLoggedIn', 'authenticationToken', 'getUser']),
+        ...mapGetters('auth',['isLoggedIn', 'authenticationToken']),
+        ...mapGetters('user',['getUser']),
         scrollToTop () {
             window.scrollTo({top: 0, behavior: 'smooth'});
         },

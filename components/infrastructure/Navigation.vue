@@ -1237,7 +1237,7 @@ export default {
                         }
 
                         if(res.user.tutorial.landing){
-                            console.log("Tutorial")
+                            // console.log("Tutorial")
                             // console.log("Route: " + this.$route.name)
                             if(document.documentElement.clientWidth < 960){
                                 document.getElementById('landingStep-2').id = 'desktopFilter'
@@ -1261,7 +1261,7 @@ export default {
     },
 
   created(){
-
+    
     if(!this.isGuest()){
         this.$axios.$post('/api/user/activity/visit', {}, this.getAuthHeader())
         .then((res)=>{

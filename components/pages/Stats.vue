@@ -147,6 +147,7 @@
 </v-flex>
 </v-layout>
 </v-container>
+<v-layout style="color: #fff; margin-top:120px" class="display-1 font-weight-bold justify-center mb-5">We are upgrading the graphs! It'll be back soon!</v-layout>
 
 
 <!-- </v-layout> -->

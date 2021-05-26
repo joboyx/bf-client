@@ -103,7 +103,8 @@ export default {
         }
     },
     methods:{
-        ...mapGetters('auth',['isLoggedIn', 'authenticationToken', 'isGuest', 'getUser']),
+        ...mapGetters('auth',['isLoggedIn', 'authenticationToken', 'isGuest']),
+        ...mapGetters('user',['getUser']),
         set_page(page){
             this.page = page
         }

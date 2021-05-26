@@ -22,7 +22,8 @@ import { mapGetters } from 'vuex'
 export default {
     components:{MediaFlix, FlixTabs},    
     methods:{
-        ...mapGetters('auth',['isLoggedIn', 'getUser'])
+        ...mapGetters('auth',['isLoggedIn']),
+        ...mapGetters('user',['getUser'])
     },
     data(){
         return{

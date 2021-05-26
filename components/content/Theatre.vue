@@ -204,7 +204,8 @@ export default {
   },
   props:['data', 'id', 'betterfap'],
   methods:{
-      ...mapGetters('auth',['isLoggedIn', 'authenticationToken', 'isGuest', 'getUser']),
+      ...mapGetters('auth',['isLoggedIn', 'authenticationToken', 'isGuest']),
+      ...mapGetters('user', ['getUser']),
       // @vuese
       // Deprecated.
       openTitle(e){

@@ -7,7 +7,6 @@
     <div class="modal-content white--text child">
       
 
-
 <div :style="{height:lb_height}" class="parent" style="width:100%">
 
             <v-btn   @click="next" absolute dark fab right large color="transparent" depressed :style="{top: '50%'}">
@@ -124,7 +123,7 @@ ref='titlebar'
 
 <v-snackbar
         v-model="suggestion_snackbar"
-        timeout='2000'
+        :timeout='2000'
         top
       >
       <v-container fluid text-xs-center class="ma-0 pa-0">
@@ -136,7 +135,7 @@ ref='titlebar'
 </v-snackbar>
 <v-snackbar
         v-model="report_snackbar"
-        timeout='2000'
+        :timeout='2000'
         top
       >
       <v-container fluid text-xs-center class="ma-0 pa-0">
@@ -146,7 +145,7 @@ ref='titlebar'
         </v-layout>
       </v-container>
 </v-snackbar>
-
+<Utils ref=utils></Utils>
 </div>
 
 </template>
@@ -157,12 +156,16 @@ import { mapGetters } from 'vuex'
 import axios from 'axios'
 import { setInterval, setTimeout } from 'timers';
 // import { tags } from '@/data/tags'
-import Tagging from '@/components/moderation/Tagging'
-import Reporting from '@/components/moderation/Reporting'
-import TitleBar from '@/components/content/TitleBar'
+const Tagging = () => import('@/components/moderation/Tagging')
+// import Tagging from '@/components/moderation/Tagging'
+const Reporting = () => import('@/components/moderation/Reporting')
+// import Reporting from '@/components/moderation/Reporting'
+const TitleBar = () => import('@/components/content/TitleBar')
+// import TitleBar from '@/components/content/TitleBar'
 // import goTo from '@/node_modules/vuetify/lib/components/Vuetify/goTo'
 
 // import { Slider, SliderItem } from 'vue-easy-slider'
+import Utils from '@/components/Utils'
 
 
 /**
@@ -171,7 +174,7 @@ import TitleBar from '@/components/content/TitleBar'
  * @group Content
  */
 export default {
-  components:{Tagging, Reporting,TitleBar},
+  components:{Tagging, Reporting,TitleBar, Utils},
   mounted(){
     const self = this
     document.onclick = function(event) {
@@ -185,6 +188,14 @@ export default {
       self.resize_window()
     },true)
 
+    window.onpopstate = function() {
+      if(self.modalOpen){
+
+        self.closeModal()
+        self.closeTagSuggestion()
+      }
+
+    }
     // console.log(this.$refs.swiper)
     // this.$refs.swiper.get('swipe').set({ enable: false })
     // this.$refs.swiper.disable('swipe')
@@ -193,7 +204,8 @@ export default {
   },
   props:['data', 'id', 'betterfap'],
   methods:{
-      ...mapGetters('auth',['isLoggedIn', 'authenticationToken', 'isGuest', 'getUser']),
+      ...mapGetters('auth',['isLoggedIn', 'authenticationToken', 'isGuest']),
+      ...mapGetters('user', ['getUser']),
       // @vuese
       // Deprecated.
       openTitle(e){
@@ -238,6 +250,9 @@ export default {
             // Next we need to check that the next item that is preloaded is indeed the next item in data. This will not be
             // so if the we are currently at the last item, after which new data comes in. In this case.       
                         
+            history.replaceState({}, '','/watch/' + this.current_resource._id)
+
+
             this.vw_index = (this.vw_index + 1)%this.window.length
 
             // If the current and next items on the list are wrong, load them properly again.
@@ -288,8 +303,9 @@ export default {
             // This will change the title bar and other modules which make use of the current_resource property
             this.setCurrentResource()
             // Next we need to check that the next item that is preloaded is indeed the next item in data. This will not be
-            // so if the we are currently at the last item, after which new data comes in. In this case.       
-            
+            // so if the we are currently at the last item, after which new data comes in. In this case.     
+            history.replaceState({}, '','/watch/' + this.current_resource._id)
+
             
             this.vw_index = this.mod((this.vw_index - 1),this.window.length)
 
@@ -399,7 +415,14 @@ export default {
       // @vuese
       // Opens the Theatre. 
       openModal(index){
-        if(this.getUser().tutorial['theater']){
+        if (index===null){
+          index = 0
+        }
+        if(!(this.$route.name === 'watch-watch')){
+        history.pushState({}, '','/watch/' + this.data[index]._id)
+        }
+
+        if(this.$store.getters['user/getUser'].carrots != false && this.getUser().tutorial['theater']){
           if(!this.$tours['theatre'].started){
             this.$tours['theatre'].start()
             this.$tours['theatre'].started = true
@@ -416,7 +439,7 @@ export default {
 
 
         setTimeout(() => {document.getElementById(this.id).scrollTop = 0;}, 0);
-        this.$router.push('#');
+        // this.$router.push(this.$route.path + '#');
         this.$emit('open_modal')
         this.loggedIn = this.isLoggedIn() || this.isGuest()
         this.modalOpen = true
@@ -439,12 +462,17 @@ export default {
       // Closes the theatre.
       
       closeModal(){
+        if(this.$route.name === 'watch-watch'){
+            this.$router.push('/')
+        }else if(true){
+          history.pushState({}, '', this.$router.currentRoute.path)
+        }
         this.$emit('close_modal')
         this.modalOpen = false
         this.displayStyle = "none"
 
         this.closeKeyboardListener();
-        setTimeout(() => {document.getElementById(this.vw_index.toString()).style.visibility = 'hidden'}, 0);
+        // setTimeout(() => {document.getElementById(this.vw_index.toString()).style.visibility = 'hidden'}, 0);
         for(let i = 0; i<6;i++){
           this.window.pop()
         }
@@ -579,10 +607,10 @@ export default {
       },
       // @vuese
       // Sends tag suggestions to the server.
-      tagSuggestionSent(x){
-        if(this.isLoggedIn()){
+      async tagSuggestionSent(x){
+        if(this.isLoggedIn() && this.$store.getters['auth/getToken']){
             for(let i of x){
-              this.$axios.$post('/api/moderate/' + this.current_resource._id + '/suggest/tag/'+i,null,{headers:{Authorization : this.authenticationToken()}})
+              this.$axios.$post('/api/moderate/' + this.current_resource._id + '/suggest/tag/'+i,null,await this.$refs.utils.forceAuthHeaders())
               .then((res)=>{
 
               })
@@ -635,12 +663,12 @@ export default {
       },
       // @vuese
       // Called when the user downvotes/removes a suggested tag.
-      removeTag(index){
-        if(this.isLoggedIn){
+      async removeTag(index){
+        if(this.isLoggedIn && this.$store.getters['auth/getToken']){
           let bunny = this.data[this.current_index]
           let id = bunny._id
           let tag = bunny.tags[index]
-          this.$axios.$post('/api/moderate/' + id + '/inappropriate/tag/'+tag, null, {headers:{Authorization : this.authenticationToken()}})
+          this.$axios.$post('/api/moderate/' + id + '/inappropriate/tag/'+tag, null, await this.$refs.utils.forceAuthHeaders())
             .then((res)=>{
               // // contole.log(res)
             })
@@ -653,12 +681,12 @@ export default {
       },
       // @vuese
       // Deprecated. Called when the user votes on a suggested tag.
-      vote_tag(index, reaction){
-        if(this.isLoggedIn){
+      async vote_tag(index, reaction){
+        if(this.isLoggedIn && this.$store.getters['auth/getToken']){
           let bunny = this.data[this.current_index]
           let id = bunny._id
           let tag = bunny.suggested_tags[index].tag
-          this.$axios.$post('/api/moderate/' + id + '/suggest/tag/'+tag + '/' + reaction, null, {headers:{Authorization : this.authenticationToken()}})
+          this.$axios.$post('/api/moderate/' + id + '/suggest/tag/'+tag + '/' + reaction, null, await this.$refs.utils.forceAuthHeaders())
             .then((res)=>{
               // contole.log(res.success)
                 // // contole.log(this.current_resource.suggested_tags[index])
@@ -681,8 +709,8 @@ export default {
       },
       // @vuese
       // Called when the user votes on a suggested tag.
-      vote_s_tag(index, reaction){
-        if(this.isLoggedIn){
+      async vote_s_tag(index, reaction){
+        if(this.isLoggedIn && this.$store.getters['auth/getToken']){
           let bunny = this.data[this.current_index]
           let id = bunny._id
           let tag = bunny.s_tags[index].tag
@@ -708,7 +736,7 @@ export default {
                 this.data[this.current_index].s_tags[index].downvote = true
               }
               this.setCurrentResource()
-          this.$axios.$post('/api/moderate/' + id + '/suggest/tag/'+tag + '/' + reaction, null, {headers:{Authorization : this.authenticationToken()}})
+          this.$axios.$post('/api/moderate/' + id + '/suggest/tag/'+tag + '/' + reaction, null, await this.$refs.utils.forceAuthHeaders())
             .then((res)=>{
               // contole.log(res.success)
                 // // contole.log(this.current_resource.s_tags[index])
@@ -738,12 +766,12 @@ export default {
       },
       // @vuese
       // Deprecated.
-      suggest_tags(){
+      async suggest_tags(){
         /* Implement api call to suggest tags */
-        if(this.isLoggedIn){
+        if(this.isLoggedIn && this.$store.getters['auth/getToken']){
           let id = this.data[this.current_index]._id          
           for(let i=0;i<this.suggested_tags.length;i++){
-            this.$axios.$post('/api/moderate/' + id + '/suggest/tag/'+this.suggested_tags[i],null,{headers:{Authorization : this.authenticationToken()}})
+            this.$axios.$post('/api/moderate/' + id + '/suggest/tag/'+this.suggested_tags[i],null,await this.$refs.utils.forceAuthHeaders())
             .then((res)=>{
               // // contole.log(res)
             })
@@ -770,9 +798,9 @@ export default {
       },
       // @vuese
       // Called when the user indicated that this resource is missing.
-      missing_report(){
+      async missing_report(){
          let id = this.data[this.current_index]._id   
-         this.$axios.$post('/api/moderate/' + id + '/inappropriate/missing', null, {headers:{Authorization : this.authenticationToken()}})
+         this.$axios.$post('/api/moderate/' + id + '/inappropriate/missing', null, await this.$refs.utils.forceAuthHeaders())
               .then((res)=>{
                   this.next()
               })
@@ -808,7 +836,7 @@ export default {
       },
       // @vuese
       // Sends a reaction of a resource to the server.
-      reaction(reaction){
+      async reaction(reaction){
         if(!this.betterfap){
 
           // this.set_reaction(reaction)
@@ -823,7 +851,7 @@ export default {
           // },0)
 
         if(this.isLoggedIn() || this.isGuest()){
-          this.$axios.$post('/api/resource/single/' + this.data[this.current_index]._id + '/reaction/' + reaction, null, {headers:{Authorization : this.authenticationToken()}})
+          this.$axios.$post('/api/resource/single/' + this.data[this.current_index]._id + '/reaction/' + reaction, null, await this.$refs.utils.forceAuthHeaders())
             .then((res)=>{
               if(res.success){
                 }
@@ -973,9 +1001,10 @@ export default {
       },
       // @vuese
       // Sends a seen event to the server.
-      sendSeen(){
-          if((this.isLoggedIn() || this.isGuest()) && this.modalOpen && !this.betterfap){
-            this.$axios.$post('/api/resource/single/' + this.data[this.current_index]._id + '/reaction/see', null, {headers:{Authorization : this.authenticationToken()}})
+      async sendSeen(){
+        
+          if((this.isLoggedIn() || this.isGuest()) && this.modalOpen && !this.betterfap && this.$store.getters['auth/getToken']){
+            this.$axios.$post('/api/resource/single/' + this.data[this.current_index]._id + '/reaction/see', null, await this.$refs.utils.forceAuthHeaders())
               .then((res)=>{
                   if(res.success){
                     //// contole.log("Seen sent!: " + this.current_index)
@@ -1101,27 +1130,39 @@ export default {
     },
       // @vuese
       // Used to toggle the sound on and off; pushes the preference to the server.
-    toggleMute(){
-      let h = {headers:{Authorization : this.authenticationToken()}}
+    async toggleMute(){
+      // if(this.$store.getters['auth/getToken'] == false){
+      //   console.log("No guest token for mute, so setting guest token.")
+      //   this.setGuestToken(this.toggleMute)
+      //   return
+      // }
+      // console.log("Proceeding to mute")
+      // let h = {headers:{Authorization : this.authenticationToken()}}
+      // console.log("New token")
+      // console.log(h)
+
       this.mute = !this.mute
-      if(this.mute){
-          this.$axios.$post('/api/user/sound/on', {}, h)
-            .then((res)=>{
-              // console.log(res)
-            })
-            .catch((err)=>{
-              console.log(err)
-            })
-      } else{
-          this.$axios.$post('/api/user/sound/off', {}, h)
-            .then((res)=>{
-              // console.log(res)
-            })
-            .catch((err)=>{
-              console.log(err)
-            })
+      if (this.$store.getters['auth/getToken']){
+        if(this.mute){
+            this.$axios.$post('/api/user/sound/on', {}, await this.$refs.utils.forceAuthHeaders())
+              .then((res)=>{
+                // console.log(res)
+              })
+              .catch((err)=>{
+                console.log(err)
+              })
+        } else{
+            this.$axios.$post('/api/user/sound/off', {}, await this.$refs.utils.forceAuthHeaders())
+              .then((res)=>{
+                // console.log(res)
+              })
+              .catch((err)=>{
+                console.log(err)
+              })
+        }
       }
-    },
+
+    }
   },
   computed:{
     get_data(){
@@ -1142,26 +1183,16 @@ export default {
 
   },
   created(){
-    
+    // this.setGuestToken()
     this.data[0].url_lazy = this.data[0].url
-    this.$router.push('#');
+    // this.$router.push('#');
 
-    let h = {headers:{Authorization : this.authenticationToken()}}
+    if (this.$store.getters['auth/getToken'] == false){
+      this.mute = true
+    } else{
+      this.mute = this.$store.getters['user/getUser'].mute
+    }
 
-    this.$axios.$get('/api/user', h)
-        .then((res)=>{
-            if(res.success){
-              // console.log(res.user.sound)
-              if(res.user.sound === 'on'){
-                this.mute = true
-              } else{
-                this.mute = false
-              }
-            }
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
     
     let self = this
     this.$bus.$on('getting_more_data', function () { 
@@ -1182,9 +1213,14 @@ export default {
 
   },
   watch:{
-    $route (to, from){
+    $route: function(to, from){
+      console.log(from)
         if(this.modalOpen){
           if(from.hash==="#"){
+            this.closeModal()
+            this.closeTagSuggestion()
+          }
+          if(from.hash.includes('watch/')){
             this.closeModal()
             this.closeTagSuggestion()
           }

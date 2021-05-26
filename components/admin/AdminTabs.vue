@@ -1,6 +1,5 @@
 <template>
 <div>
-
     <v-tabs v-model="model" slider-color="#B29126" centered color="transparent" fixed-tabs :hide-slider="slider" class="mt-0">
         <v-tab nuxt to="/admin/new_tags">New Tags</v-tab>
         <v-tab nuxt to="/admin/existing_tags" >Existing Tags</v-tab>
@@ -28,7 +27,7 @@ export default {
         // @vuese
         // Get the `getUser` method to retrieve the user data from the vuex store..
         ...mapGetters(
-                'auth',['getUser'],
+                'user',['getUser'],
             ),
     },
     created(){

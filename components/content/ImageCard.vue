@@ -69,7 +69,8 @@
 </template>
 
 <script>
-import BottomStat from '@/components/content/BottomStat'
+const BottomStat = () => import('@/components/content/BottomStat')
+// import BottomStat from '@/components/content/BottomStat'
 // import BottomStatRating from '@/components/BottomStatRating'
 
 /**

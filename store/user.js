@@ -1,13 +1,24 @@
 
 export const state = () => ({
     user : {
-
+        username:false,
+        notifications: [],
+        streak: 0,
+        carrots: false,
+        mute: true,
+        tutorial: {}
     }
 })
 
 export const getters = {
     getUser(state){
         return state.user
+    },
+    getPreferences(state){
+        
+    },
+    getNotifications({ user }){
+        return user.notifications
     }
 }
 
@@ -17,6 +28,15 @@ export const mutations = {
     },
     finishTutorial(state, tutorial_){
         state.user.tutorial[tutorial_] = false
+    },
+    updatePreferences(state, preference_toggle){
+
+    },
+    dismissNotification(state, id){
+        state.user.notifications.splice(id,1)
+    },
+    dismissAllNotifications(state){
+        state.user.notifications = []
     }
 }
 
@@ -26,5 +46,11 @@ export const actions = {
     },
     finishTutorial({ commit }, tutorial_){
         commit('finishTutorial', tutorial_)
+    },
+    dismissNotification({ commit }, id){
+        commit('dismissNotification', id)
+    },
+    dismissAllNotifcations({ commit }){
+        commit('dismissAllNotifications')
     }
 }

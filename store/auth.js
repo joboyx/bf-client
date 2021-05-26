@@ -1,4 +1,3 @@
-
 export const state = () => ({
     authData : {
         loggedIn : true,
@@ -27,6 +26,9 @@ export const getters = {
     },
     getUser(state){
         return state.user
+    },
+    getAuthHeader(state){
+        return {headers:{Authorization : 'Bearer ' + state.authData.token}}
     }
 }
 

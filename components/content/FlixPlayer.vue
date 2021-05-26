@@ -148,7 +148,6 @@ touchless
 <script>
 
 import { mapGetters } from 'vuex'
-import axios from 'axios'
 import { setInterval, setTimeout } from 'timers';
 
 /**

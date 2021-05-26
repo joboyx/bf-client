@@ -61,7 +61,7 @@
           </v-btn>
           <v-menu v-if='true' top offset-y id="theatreStep-2">
                     <template v-slot:activator="{ on }">
-                        <v-btn icon flat v-on="on">
+                        <v-btn icon flat v-on="on" :disabled="!$store.getters['auth/getToken']">
                             <v-icon class="text-xs-center">
                               add
 
@@ -245,7 +245,7 @@
                 </v-flex>
         </v-layout>
           <v-layout class="mb-2" wrap>
-            <span v-for="(tag,index) in current_resource.tags"  :key="tag">
+            <span v-for="(tag,index) in current_resource.tags"  :key="tag + index + 'tags'">
 
               <v-tooltip top>
                 <template v-slot:activator="{ on }">
@@ -269,7 +269,7 @@
             
 
 
-            <span v-for="(tag,index) in current_resource.s_tags"  :key="tag">
+            <span v-for="(tag,index) in current_resource.s_tags"  :key="tag + index + 's_tags'">
 
             <v-tooltip top v-if="!isGuest()">
                 <template v-slot:activator="{ on }">
@@ -309,7 +309,7 @@
 
             </span>
             <!-- "$emit('openTagSuggestion')" -->
-            <v-btn v-if="!taggingOpen" small round outline @click="!isGuest() ? $emit('openTagger') : $bus.emit('signupPrompt')" id='tagger'> Add tag</v-btn>
+            <v-btn v-if="!taggingOpen" small round outline @click="!isGuest() ? $emit('openTagger') : $bus.emit('signupPrompt')" id='tagger' :disabled="$route.name.includes('watch') && isGuest()"> Add tag</v-btn>
                     <!-- v-model=""  -->
 
               <!-- <template v-else-if="tags.length>0">
@@ -355,15 +355,23 @@
             <span>Copy source</span>
           </v-tooltip>
 
+        <v-tooltip bottom v-if="$store.getters['user/getUser'].tier===0">
+        <template v-slot:activator="{ on }">
+            <v-btn icon href="https://www.patreon.com/bunnyfap" dark v-on="on" target="_blank"><v-icon color="#B29126">favorite</v-icon></v-btn>
+
+        </template>
+        <span>Support us!</span>
+        </v-tooltip>
+
 
         </v-layout>
         <v-layout wrap >
           <span id="theatreStep-5">
-          <v-btn v-if="!isGuest()" color="" flat @click="$emit('openReport')" outline >
+          <v-btn v-if="!isGuest()" color="" flat @click="$emit('openReport')" outline :disabled="!$store.getters['auth/getToken']">
             Report
             <!-- <v-icon right> error</v-icon> -->
             </v-btn>
-          <v-btn v-else color="" flat @click="$bus.emit('signupPrompt')" outline>
+          <v-btn v-else color="" flat @click="$bus.emit('signupPrompt')" outline :disabled="$route.name.includes('watch')">
             Report
             <!-- <v-icon right> error</v-icon> -->
             </v-btn></span>
@@ -372,8 +380,8 @@
 
           <v-tooltip right>
             <template v-slot:activator="{ on }">
-              <v-btn v-if="!isGuest()" flat dark outline v-on="on" @click="$emit('missing_report')">Missing</v-btn>
-              <v-btn v-else flat dark outline v-on="on" @click="$bus.emit('signupPrompt')">Missing</v-btn>
+              <v-btn v-if="!isGuest()" flat dark outline v-on="on" @click="$emit('missing_report')" :disabled="!$store.getters['auth/getToken']">Missing</v-btn>
+              <v-btn v-else flat dark outline v-on="on" @click="$bus.emit('signupPrompt')" :disabled="$route.name.includes('watch')">Missing</v-btn>
             </template>
             <!-- <v-icon right> error</v-icon> -->
             <span>This item is not showing</span>
@@ -479,9 +487,6 @@ export default {
             // @vuese
             // Default flick names and titles. Is not used.
             flicks:[
-                {'title':'Flick 1', '_id':'asdf'},
-                {'title':'Flick 3', '_id':'asdf'},
-                {'title':'Flick 2', '_id':'asdf'},
             ],
             // @vuese
             // Popup dialog at the top of the screen.
@@ -576,8 +581,9 @@ export default {
         }
     },
     methods:{
-      ...mapGetters('auth',['isLoggedIn', 'authenticationToken', 'isGuest', 'getUser']),
-      ...mapActions('auth',['finishTutorial']),
+      ...mapGetters('auth',['isLoggedIn', 'authenticationToken', 'isGuest']),
+      ...mapGetters('user',['getUser']),
+      ...mapActions('user',['finishTutorial']),
         // @vuese
         // Called when the user wants to skip the tutorial.
         skipTour(){

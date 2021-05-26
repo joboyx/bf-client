@@ -311,9 +311,11 @@
 <script>
 //#B29126
 import { mapActions, mapGetters } from 'vuex'
-import axios from 'axios'
-import draggable from 'vuedraggable'
-import FlixPlayer from '@/components/content/FlixPlayer'
+
+const draggable = () => import('vuedraggable')
+// import draggable from 'vuedraggable'
+const FlixPlayer = () => import('@/components/content/FlixPlayer')
+// import FlixPlayer from '@/components/content/FlixPlayer'
 
 /**
  * @vuese
@@ -403,8 +405,9 @@ export default{
         }
     },
     methods:{
-        ...mapGetters('auth',['isLoggedIn', 'authenticationToken', 'getUser']),
-      ...mapActions('auth',['finishTutorial']), 
+        ...mapGetters('auth',['isLoggedIn', 'authenticationToken']),
+        ...mapGetters('user',['getUser']),
+      ...mapActions('user',['finishTutorial']), 
         // @vuese
         // Called when the tutorial is skipped.
         skipTour(){

@@ -30,7 +30,7 @@
             <v-toolbar-items class="hidden-sm-and-down">
                 <!-- <v-btn icon small v-if="!user.patreon_connected" nuxt to="/bunnylove" target="_blank"><v-icon small color="#B29126">favorite</v-icon></v-btn> -->
             <v-btn flat nuxt to="/" class="font-weight-light subheading ml-2">
-                <v-icon class="mr-2" small color="#B29126"  v-if="user.tier===2">home</v-icon>
+                <v-icon class="mr-2" small color="#B29126"  v-if="getUser().tier===2">home</v-icon>
                 <v-icon class="mr-2" small v-else>home</v-icon>
                 <!-- <v-icon class="mr-2" small>home</v-icon>  -->
                 Home
@@ -39,7 +39,7 @@
             </v-toolbar-items>
             <v-toolbar-items v-if="isLoggedIn()" class="hidden-sm-and-down">
             <v-btn flat nuxt to="/library" class="font-weight-light subheading" id="navbarStep-0">
-                <v-icon class="mr-2" small color="#B29126" v-if="user.tier===2">video_library</v-icon>
+                <v-icon class="mr-2" small color="#B29126" v-if="getUser().tier===2">video_library</v-icon>
                 <v-icon class="mr-2" small v-else>video_library</v-icon> My Library
             </v-btn>
 
@@ -47,13 +47,13 @@
             <v-toolbar-items>
 
             <v-btn flat nuxt to="/flix/store" class="hidden-sm-and-down font-weight-light subheading" id="navbarStep-1">
-                <v-icon class="mr-2" small  color="#B29126" v-if="user.tier===2">videocam</v-icon>
+                <v-icon class="mr-2" small  color="#B29126" v-if="getUser().tier===2">videocam</v-icon>
                 <v-icon class="mr-2" small  v-else>videocam</v-icon> Flix
             </v-btn>
 
 
-            <v-btn v-if="admin" nuxt flat to="/admin/new_tags" class="hidden-sm-and-down font-weight-light subheading" >
-                <v-icon class="mr-2" small color="#B29126" v-if="user.tier===2">settings</v-icon>
+            <v-btn v-if="getUser().admin > 0" nuxt flat to="/admin/new_tags" class="hidden-sm-and-down font-weight-light subheading" >
+                <v-icon class="mr-2" small color="#B29126" v-if="getUser().tier===2">settings</v-icon>
                 <v-icon class="mr-2" small v-else>settings</v-icon> Admin
             </v-btn>
             </v-toolbar-items>
@@ -76,7 +76,7 @@
                 <!-- dont-fill-mask-blanks -->
 
             <multiselect v-model="search_string"
-                    :options="search_items"
+                    :options="getSearchItems()"
                     group-values="items"
                     group-label="sort"
                     :resetAfter="true"
@@ -111,7 +111,7 @@
                     >
                     <v-badge bottom overlap color="transparent">
                       <template v-slot:badge >
-                          <span class="mt-1 pl- font-weight-thin subheading">{{carrots}}</span>
+                          <span class="mt-1 pl- font-weight-thin subheading">{{getUser().carrots}}</span>
                       </template>
                         <v-img
                                 :src="get_reward_logo('carrot')"
@@ -152,7 +152,7 @@
                     >
                     <v-badge bottom overlap color="transparent">
                       <template v-slot:badge >
-                            <span class="mt-1 ml-2 font-weight-thin subheading">{{carrots}}</span>
+                            <span class="mt-1 ml-2 font-weight-thin subheading">{{getUser().carrots}}</span>
                           <!-- <span >{{streak}}</span> -->
                       </template>
                         <v-img
@@ -176,9 +176,9 @@
                           <span class="title mt-5 font-weight-light">Your daily rewards</span>
                           </div>
                           <!-- <v-layout justify-center><v-btn icon><v-icon>business_center</v-icon></v-btn></v-layout> -->
-                          <v-stepper-step :complete="true" :step='streak' color="#B29126">
+                          <v-stepper-step :complete="true" :step='getUser().streak' color="#B29126">
                                   <v-layout>
-                              <template v-for="(reward, index) in rewards[streak] " >
+                              <template v-for="(reward, index) in rewards[getUser().streak] " >
 
                                       <v-badge bottom overlap color="transparent" :key="index + String(reward)">
                                           <template v-slot:badge>
@@ -198,10 +198,10 @@
                             </template>
                                 </v-layout>
                         </v-stepper-step>
-                        <v-stepper-content :step="streak">
+                        <v-stepper-content :step="getUser().streak">
                         </v-stepper-content>
-                          <v-stepper-step :step='streak+1' color="#B29126">
-                              <template v-for="(reward,index) in rewards[(streak+1)%31] " >
+                          <v-stepper-step :step='getUser().streak+1' color="#B29126">
+                              <template v-for="(reward,index) in rewards[(getUser().streak+1)%31] " >
                                       <v-badge bottom overlap color="transparent"  :key="index + String(reward)">
                                           <template v-slot:badge>
                                       <span v-if="reward['amount']!=1" class="font-weight-light">x{{reward['amount']}}</span>
@@ -218,10 +218,10 @@
                             </v-badge>
                             </template>
                         </v-stepper-step>
-                        <v-stepper-content step="streak+1">
+                        <v-stepper-content :step='getUser().streak+1'>
                         </v-stepper-content>
-                          <v-stepper-step :step='streak+2'>
-                              <template v-for="(reward, index) in rewards[(streak+2)%31] " >
+                          <v-stepper-step :step='getUser().streak+2'>
+                              <template v-for="(reward, index) in rewards[(getUser().streak+2)%31] " >
                                       <v-badge bottom overlap color="transparent"  :key="index + String(reward)">
                                           <template v-slot:badge>
                                       <span v-if="reward['amount']!=1" class="font-weight-light">x{{reward['amount']}}</span>
@@ -264,18 +264,18 @@
                       dark
                       v-on="on"
                     >
-                    <v-icon v-if="notifications.length!=0" color="#B29126">notification_important</v-icon>
+                    <v-icon v-if="getNotifications().length!=0" color="#B29126">notification_important</v-icon>
                     <v-icon v-else>notifications</v-icon>
                     </v-btn>
                   </template>
-                  <v-card max-height='500px' v-if="notifications.length!=0">
+                  <v-card max-height='500px' v-if="getNotifications().length!=0">
                        <v-list>
                            <v-list-tile>
                                <v-list-tile-content>
                                    <v-list-tile-title class="font-weight-bold">Notifications
 
                                        </v-list-tile-title>
-                                       <v-list-tile-sub-title>{{notifications.length}} new notifications.</v-list-tile-sub-title>
+                                       <v-list-tile-sub-title>{{getNotifications().length}} new notifications.</v-list-tile-sub-title>
                                 </v-list-tile-content>
                                 <v-list-tile-action>
                                     <v-btn icon @click="dismiss_all_notifications()">
@@ -285,7 +285,7 @@
                                </v-list-tile>
 
                            </v-list>
-                    <v-list v-for="notification in notifications" :key="notification['date']">
+                    <v-list v-for="notification in getNotifications()" :key="notification['date']">
                       <v-divider></v-divider>
                       <v-list-tile avatar>
                         <v-list-tile-content class="underline-on-hover" style="cursor:pointer" @click="notification_redirect(notification['type'])">
@@ -345,11 +345,11 @@
                     <template v-slot:activator="{ on }">
                         <v-btn v-on="on" flat class="font-weight-light subheading">
                             <!-- <v-icon left class='mr-2' v-if="user.tier===0">account_circle</v-icon>  -->
-                            <v-icon left class='mr-2' v-if="user.tier===1" color="#B29126">favorite_border</v-icon>
-                            <v-icon left class='mr-2' v-else-if="user.tier===2" color="#B29126">favorite</v-icon>
-                            <v-icon left class='mr-2' v-else-if="user.tier===3" color="#B29126">favorite</v-icon>
-                            <span style="color:#B29126;" v-if="user.tier===3" >{{truncate(username)}}</span>
-                            <span v-else >{{truncate(username)}}</span>
+                            <v-icon left class='mr-2' v-if="getUser().tier===1" color="#B29126">favorite_border</v-icon>
+                            <v-icon left class='mr-2' v-else-if="getUser().tier===2" color="#B29126">favorite</v-icon>
+                            <v-icon left class='mr-2' v-else-if="getUser().tier===3" color="#B29126">favorite</v-icon>
+                            <span style="color:#B29126;" v-if="getUser().tier===3" >{{truncate(getUser().username)}}</span>
+                            <span v-else >{{truncate(getUser().username)}}</span>
 
 
                         </v-btn>
@@ -377,11 +377,11 @@
                     <template v-slot:activator="{ on }">
                         <v-btn v-on="on" flat class="font-weight-light subheading">
                             <!-- <v-icon left class='mr-2' v-if="user.tier===0">account_circle</v-icon>  -->
-                            <v-icon left class='mr-2' v-if="user.tier===1" color="#B29126">favorite_border</v-icon>
-                            <v-icon left class='mr-2' v-else-if="user.tier===2" color="#B29126">favorite</v-icon>
-                            <v-icon left class='mr-2' v-else-if="user.tier===3" color="#B29126">favorite</v-icon>
-                            <span style="color:#B29126;" v-if="user.tier===3" >{{truncate(username)}}</span>
-                            <span v-else >{{truncate(username)}}</span>
+                            <v-icon left class='mr-2' v-if="getUser().tier===1" color="#B29126">favorite_border</v-icon>
+                            <v-icon left class='mr-2' v-else-if="getUser().tier===2" color="#B29126">favorite</v-icon>
+                            <v-icon left class='mr-2' v-else-if="getUser().tier===3" color="#B29126">favorite</v-icon>
+                            <span style="color:#B29126;" v-if="getUser().tier===3" >{{truncate(getUser().username)}}</span>
+                            <span v-else >{{truncate(getUser().username)}}</span>
 
 
                         </v-btn>
@@ -401,23 +401,23 @@
                 </v-menu>
 
             </v-toolbar-items>
+            <v-toolbar-items  v-if="getUser().tier===0">
+                <v-tooltip bottom>
+                <template v-slot:activator="{ on }">
+                    <v-btn icon href="https://www.patreon.com/bunnyfap" dark v-on="on" target="_blank"><v-icon color="#B29126">favorite</v-icon></v-btn>
+
+                </template>
+                <span>Support us!</span>
+                </v-tooltip>
+            </v-toolbar-items>
                 <div id="navbarStep-3"></div>
             </v-toolbar>
         </div>
 
         <div class="sidenav hidden-md-and-up">
             <v-navigation-drawer v-model="drawer" fixed  :class='side_nav_theme' >
-                            <v-img v-if="!night_mode"
-                    class="title hidden-sm-and-up"
-                    contain
-                    :src="require('assets/images/logo.png')"
-                    style="cursor:pointer"
-                    @click="homepage"
 
-                >
-                </v-img>
-
-            <v-img v-else
+            <v-img
                     class="title hidden-sm-and-up"
                     contain
                     :src="require('assets/images/logos/logo-white-horizontal-v3.png')"
@@ -440,17 +440,6 @@
 
 
                     </template>
-                        <v-list-tile v-if="false">
-                            <!-- <v-icon left>remove_red_eye</v-icon>  -->
-                                <v-list-tile-action v-if="false">
-                                    <v-switch
-                                    v-model="night_mode"
-                                    label="Night mode"
-                                    @change="toggle_nightmode"
-                                    ></v-switch>
-                                </v-list-tile-action>
-
-                        </v-list-tile>
                     </v-list>
                 </div>
 
@@ -490,13 +479,19 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 // import SignInUp from '@/components/SignInUp'
-import axios from 'axios'
+// import axios from 'axios'
 // import { tags } from '@/data/search_items'
 // import { search_items } from '@/data/search_items_sorted'
+// const { rewards } = () => import('@/components/modules/rewards')
+// import  Login  from '@/components/modules/Login'
+// import  Signup  from '@/components/modules/Signup'
+// import  AcceptToS  from '@/components/modules/AcceptToS'
+// import Multiselect from 'vue-multiselect'
 import { rewards } from '@/components/modules/rewards'
-import  Login  from '@/components/modules/Login'
-import  Signup  from '@/components/modules/Signup'
-import  AcceptToS  from '@/components/modules/AcceptToS'
+const Login = () => import('@/components/modules/Login')
+const Signup = () => import('@/components/modules/Signup')
+const AcceptToS = () => import('@/components/modules/AcceptToS')
+// const Multiselect = () => import('vue-multiselect')
 
 /**
  * @vuese
@@ -524,12 +519,6 @@ export default {
         return{ // @vuese
             // Whether the user has a notification in the form of a daily streak reward waiting.
             reward_notification:false, // @vuese
-            // The username of the user.
-            username:'', // @vuese
-            // Deprecated. This used to determine whether the background was dark or white. Now its all dark.
-            night_mode:true, // @vuese
-            // Whether the user is an admin.
-            admin:false, // @vuese
             // Deprecated.
             slider:false, // @vuese
             // Deprecated.
@@ -540,8 +529,6 @@ export default {
             side_nav_theme:'grey darken-4', // @vuese
             // The text in the search bar.
             search_string:"", // @vuese
-            // The default items in the search bar.
-            search_items:[], // @vuese
             // Deprecated.
             color_theme:'grey darken-4', // @vuese
             // Deprecated.
@@ -640,8 +627,6 @@ export default {
             rewards: rewards.data, // @vuese
             // The daily streak value
             streak: 1, // @vuese
-            // Number of carrots the user has
-            carrots:'', // @vuese
             // The user data object. (Username, carrots, preferences, etc.)
             user:{}, // @vuese
             // The data for the landing page tutorial.
@@ -986,9 +971,9 @@ export default {
             }
     },
     computed:{
-          menuProps() {
-                return !this.search_string ? {value: false} : {}
-            }
+        //   menuProps() {
+        //         return !this.search_string ? {value: false} : {}
+        //     },
     },
     methods:{
         // @vuese
@@ -1015,7 +1000,9 @@ export default {
         finishLanding(){
             this.finishSingleTutorial('landing')
             this.$axios.$post('/api/user/tutorial', {"tutorial":'landing'}, {headers:{Authorization : this.authenticationToken()}})
-                // .then((res)=>{console.log("You finished a tutorial!")})
+                .then((res)=>{
+                    // console.log("You finished a tutorial!")
+                    })
                 .catch((err)=>{console.log(err)})
         },
         // @vuese
@@ -1070,9 +1057,14 @@ export default {
         // @vuese
         // Map getters from vuex store.
         ...mapGetters(
-                        'auth',['isLoggedIn', 'authenticationToken', 'isGuest','getUser'],
+                        'auth',['isLoggedIn', 'authenticationToken', 'isGuest', 'getAuthHeader'],
                     ),
-        ...mapActions('auth',['setUser', 'finishTutorial']),
+        ...mapGetters(
+                        'user',['getUser', 'getNotifications'],
+                    ),
+        ...mapGetters('search', ['getSearchItems']),
+        // ...mapActions('auth',['setUser']),
+        ...mapActions('user', ['finishTutorial']),
         // @vuese
         // Used to push to the homepage.
         homepage(){
@@ -1111,12 +1103,12 @@ export default {
         // Called when the user makes a search request. We first determine whether a category was selected, a tag was selected, a channel was selected, or whether the user made a free request. We then redirect accordingly.
         search(search_){
             // [Category, Tag, Channel]
-            if(this.search_items[0].items.includes(search_)){
+            if(this.getSearchItems()[0].items.includes(search_)){
                 this.$router.push('/categories/'+search_)
-            } else if(this.search_items[1].items.includes(search_)){
+            } else if(this.getSearchItems()[1].items.includes(search_)){
                 search_ = search_.slice(0, -1);
                 this.$router.push('/tags/'+search_)
-            } else if(this.search_items[2].items.includes(search_)){
+            } else if(this.getSearchItems()[2].items.includes(search_)){
                 this.$router.push('/channels/'+search_)
             } else{
                 this.$router.push('/search/'+search_)
@@ -1126,7 +1118,9 @@ export default {
         // @vuese
         // Whenever the user types something in the search bar, we update the values accordingly.
         update_search_query(search_value){
-            this.search_items[3].items[0] = search_value
+            // this.search_items[3].items[0] = search_value
+            // console.log(search_value)
+            this.$store.commit('search/updateSearchQuery', search_value)
         },
         // @vuese
         // Deprecated. 
@@ -1158,28 +1152,25 @@ export default {
         // @vuese
         // Clear a single specific notifications.
         dismiss_notification(notification){
-
-            let h = {headers:{Authorization : this.authenticationToken()}}
-            let idx = this.notifications.indexOf(notification)
-            let id = this.notifications[idx]._id
-            this.$axios.$post('/api/fication/notifications/' + id + '/dismiss', {}, h)
+            let idx = this.getNotifications().indexOf(notification)
+            let id = this.getNotifications()[idx]._id
+            this.$store.dispatch('user/dismissNotification', idx)
+            if(this.getNotifications().length == 0){
+                this.notification_menu = false
+            }
+            this.$axios.$post('/api/fication/notifications/' + id + '/dismiss', {}, this.getAuthHeader())
                 .then((res)=>{
-                    // console.log(res)
-                    this.notifications.splice(idx,1)
-                    if(this.notifications.length === 0){
-                        this.notification_menu = false
-                    }
 
                 })
         },
         // @vuese
         // Clear all notifications.
         dismiss_all_notifications(){
-            let h = {headers:{Authorization : this.authenticationToken()}}
-            this.$axios.$post('/api/fication/notifications/dismiss', {}, h)
+            this.$store.dispatch('user/dismissAllNotifcations')
+            this.notification_menu = false
+            this.$axios.$post('/api/fication/notifications/dismiss', {}, this.getAuthHeader())
                 .then((res)=>{
-                    this.notifications = []
-                    this.notification_menu = false
+
                 })
         },
         // @vuese
@@ -1201,14 +1192,14 @@ export default {
         // @vuese
         // Sometimes the user spends the carrots on a specific page, in which case we want to update here on the navbar the total amount of carrots. We use the vue bus for this. See `created()`.
         refresh_carrots(){
+            console.log("Remove this function")
+        // let h = {headers:{Authorization : this.authenticationToken()}}
+        // this.$axios.$get('/api/user', h)
+        //     .then((res)=>{
+        //         this.user = res.user
+        //         this.carrots = res.user.carrots
 
-        let h = {headers:{Authorization : this.authenticationToken()}}
-        this.$axios.$get('/api/user', h)
-            .then((res)=>{
-                this.user = res.user
-                this.carrots = res.user.carrots
-
-        })
+        // })
         },
         // @vuese
         // Set the number of carrots.
@@ -1235,51 +1226,18 @@ export default {
         // @vuese
         // After the user data pulled from the users, we use this function parse it.
         load_user(){
-            // console.log("Loading user")
-            let h = {headers:{Authorization : this.authenticationToken()}}
-            
-            this.$axios.$get('/api/user', h)
+            this.$axios.$get('/api/user', this.getAuthHeader())
                 .then((res)=>{
 
                     if(res.success){
-                        // console.log(res)
-                        this.user = res.user
-                        this.setUser(this.user)
-                        // console.log(this.getUser())
-                        this.emit_user()
-                        this.username = res.user.username
-                        // console.log(res.user)
-                        if(parseInt(res.user.admin)>0){
-                            this.admin=true
-                        }
-                        // let mode = res.user.mode
-                        this.night_mode= true
-                        /*
-                        if(mode==='dark'){
-                            this.night_mode = true
-                            mode = true
-                        } else{
-                            this.night_mode = false
-                            mode = false
-                        }*/
-                        //this.toggle_nightmode(mode)
-                        this.notifications = res.user.notifications
-                        this.carrots = res.user.carrots
+                        this.$store.commit('user/setUser', res.user)
 
-                        if(res.user.streak){
-                            this.streak = res.user.streak
-                        } else{
-                            this.streak = 1
-                        }
-
-                        // Start tutorial
-                        // console.log(this.user)
-
-                        if(!this.user.tos_accepted && !this.isGuest()){
+                        if(!res.user.tos_accepted && !this.isGuest()){
                             this.$bus.emit('tos_popup')
                         }
 
-                        if(this.user.tutorial.landing){
+                        if(res.user.tutorial.landing){
+                            // console.log("Tutorial")
                             // console.log("Route: " + this.$route.name)
                             if(document.documentElement.clientWidth < 960){
                                 document.getElementById('landingStep-2').id = 'desktopFilter'
@@ -1303,40 +1261,29 @@ export default {
     },
 
   created(){
-    if(!this.isLoggedIn()){
-        // this.$router.push('/login')
-    }
-
-    let h = {headers:{Authorization : this.authenticationToken()}}
-
+    
     if(!this.isGuest()){
-        this.$axios.$post('/api/user/activity/visit', {}, h)
+        this.$axios.$post('/api/user/activity/visit', {}, this.getAuthHeader())
         .then((res)=>{
             
             })
         .catch((err)=>{
             console.log(err)
-            // this.$router.push('/maintenance')
         })
     } else {
         this.tutorialFlixSteps.pop()
     }
 
     this.load_user()
-
-
-    this.$axios.$get('/api/tag/existing/search', h)
+    this.$axios.$get('/api/tag/existing/search', this.getAuthHeader())
         .then((res)=>{
             for (let i = 0; i < res.data[1].items.length; i++) {
                 res.data[1].items[i] = res.data[1].items[i] + ' '
             }
-            this.search_items = res.data
-            // console.log("Search items")
-            // console.log(this.search_items)
+            this.$store.commit('search/setSearchItems', res.data)
         })
         .catch((err)=>{
             console.log(err)
-            // this.$router.push('/maintenance')
         })
 
 
@@ -1349,18 +1296,6 @@ export default {
           })
           */
     // this.get_nightmode()
-      let self = this
-      this.$bus.$on('refresh_carrots', function(arg) {
-            self.refresh_carrots()
-
-        })
-      this.$bus.$on('update_carrots', this.update_carrots)
-      this.$bus.$on('get_user', function(){
-          self.emit_user()
-      })
-      this.$bus.$on('load_user', function(){
-          self.load_user()
-      })
   }
 }
 </script>

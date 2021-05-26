@@ -145,7 +145,8 @@ export default {
         }
     },
     methods:{
-        ...mapGetters('auth',['isLoggedIn', 'authenticationToken', 'getUser']),
+        ...mapGetters('auth',['isLoggedIn', 'authenticationToken']),
+        ...mapGetters('user',['getUser']),
         accept(item){
             let h = {headers:{Authorization : this.authenticationToken()}}
             let self = this

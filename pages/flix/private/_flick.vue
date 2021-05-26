@@ -95,11 +95,15 @@
 
 <script>
 import Media from '@/components/content/Media'
-import FlixTabs from '@/components/infrastructure/FlixTabs'
-import FlixPlayer from '@/components/content/FlixPlayer'
-import Editor from '@/components/content/Editor'
-import Publish from '@/components/content/Publish'
-import axios from 'axios'
+const FlixTabs = () => import('@/components/infrastructure/FlixTabs')
+// import FlixTabs from '@/components/infrastructure/FlixTabs'
+const FlixPlayer = () => import('@/components/content/FlixPlayer')
+// import FlixPlayer from '@/components/content/FlixPlayer'
+const Editor = () => import('@/components/content/Editor')
+// import Editor from '@/components/content/Editor'
+const Publish = () => import('@/components/content/Publish')
+// import Publish from '@/components/content/Publish'
+
 import { mapGetters } from 'vuex'
 
 
@@ -220,6 +224,16 @@ export default {
                   this.published = true
                 }
             })
+    },
+    head () {
+        return {
+            titleTemplate: `Porn Flix: HD Porn Video & Image compilations XXX - Bunnyfap`,
+            meta: [{
+                hid: 'description',
+                name: 'description',
+                content: `Watch HD Porn compilations made by the community!`
+            }],
+        }
     }
 }
 </script>

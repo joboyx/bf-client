@@ -215,8 +215,33 @@
 
 import axios from 'axios'
 import { mapGetters } from 'vuex'
+import cookie from 'cookie'
+
 
 export default {
+    async asyncData({$axios, req, route}) {
+        let token = {}
+        if (req && req.headers.cookie){
+            const parsedCookie = cookie.parse(req.headers.cookie).vuex;
+            if (JSON.parse(parsedCookie).auth.authData.token != false){
+                token = {headers:{Authorization: 'Bearer ' + JSON.parse(parsedCookie).auth.authData.token}}
+            } else{
+                token = {}
+            }
+        } else{
+            token = {}
+        }
+        let res = {}
+        try {
+            res = await $axios.$post('/api/flix/published/'+route.params.flick, {}, token)
+        } catch(err){
+            console.log(err)
+            redirect('/')
+        }
+        // console.log(res)
+        // console.log(resource)
+        return { data:res.data, reviews:res.reviews }
+    },
     data(){
         return {
             data:false,
@@ -306,15 +331,24 @@ export default {
         },
     },
     created(){
-       let h = {headers:{Authorization : this.authenticationToken()}}
-        this.$axios.$post('/api/flix/published/'+this.$route.params.flick,{},h)
-            .then((res)=>{
-                // console.log(res)
-                this.data = res.data
-                this.reviews = res.reviews
-
-
-            })
+    //    let h = {headers:{Authorization : this.authenticationToken()}}
+    //     this.$axios.$post('/api/flix/published/'+this.$route.params.flick,{},h)
+    //         .then((res)=>{
+    //             // console.log(res)
+    //             this.data = res.data
+    //             this.reviews = res.reviews
+    //         })
+    },
+    head () {
+        return {
+            // titleTemplate: `Porn Flix: HD Porn Video & Image compilations XXX - Bunnyfap`,
+            titleTemplate: `${this.data.title || 'Porn Flix: HD Porn Video & Image compilations XXX'} - Bunnyfap`,
+            meta: [{
+                hid: 'description',
+                name: 'description',
+                content: `Watch HD Porn compilations made by the community!`
+            }],
+        }
     }
 }
 </script>

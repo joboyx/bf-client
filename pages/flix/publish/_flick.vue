@@ -346,6 +346,16 @@ export default {
                 this.data = res.data
                 this.reviews = res.reviews
             })
+    },
+    head () {
+        return {
+            titleTemplate: `Porn Flix: HD Porn Video & Image compilations XXX - Bunnyfap`,
+            meta: [{
+                hid: 'description',
+                name: 'description',
+                content: `Watch HD Porn compilations made by the community!`
+            }],
+        }
     }
 }
 </script>

@@ -22,7 +22,8 @@ import { mapGetters } from 'vuex'
 export default {
     components:{MediaFlix, FlixTabs},    
     methods:{
-        ...mapGetters('auth',['isLoggedIn', 'getUser'])
+        ...mapGetters('auth',['isLoggedIn']),
+        ...mapGetters('user',['getUser'])
     },
     data(){
         return{
@@ -46,6 +47,16 @@ export default {
         //     this.$tours['flix'].start()
         // }
         // YOU WERE HERE
+    },
+    head () {
+        return {
+            titleTemplate: `Porn Flix: HD Porn Video & Image compilations XXX - Bunnyfap`,
+            meta: [{
+                hid: 'description',
+                name: 'description',
+                content: `Watch HD Porn compilations made by the community!`
+            }],
+        }
     }
 }
 </script>

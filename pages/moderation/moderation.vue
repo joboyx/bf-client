@@ -80,15 +80,18 @@
 import axios from 'axios'
 import { mapGetters } from 'vuex'
 // import ModerationAdminLegacy from '@/components/moderation/ModerationAdminLegacy'
-import ModerationAdmin from '@/components/moderation/ModerationAdmin'
-import TagModerationAdd from '@/components/moderation/TagModerationAdd'
-import TagModerationEdit from '@/components/moderation/TagModerationEdit'
-import ChannelModeration from '@/components/moderation/ChannelModeration'
-import PlayGround from '@/components/PlayGround'
+const ModerationAdmin = () => import('@/components/moderation/ModerationAdmin')
+// import ModerationAdmin from '@/components/moderation/ModerationAdmin'
+const TagModerationAdd = () => import('@/components/moderation/TagModerationAdd')
+// import TagModerationAdd from '@/components/moderation/TagModerationAdd'
+const TagModerationEdit = () => import('@/components/moderation/TagModerationEdit')
+// import TagModerationEdit from '@/components/moderation/TagModerationEdit'
+const ChannelModeration = () => import('@/components/moderation/ChannelModeration')
+// import ChannelModeration from '@/components/moderation/ChannelModeration'
 
 
 export default {
-    components:{ModerationAdmin,TagModerationAdd,TagModerationEdit,PlayGround,ChannelModeration}, //ModerationAdminLegacy
+    components:{ModerationAdmin,TagModerationAdd,TagModerationEdit,ChannelModeration}, //ModerationAdminLegacy
     data(){
         return{
             admin:'',
@@ -100,7 +103,8 @@ export default {
         }
     },
     methods:{
-        ...mapGetters('auth',['isLoggedIn', 'authenticationToken', 'isGuest', 'getUser']),
+        ...mapGetters('auth',['isLoggedIn', 'authenticationToken', 'isGuest']),
+        ...mapGetters('user',['getUser']),
         set_page(page){
             this.page = page
         }

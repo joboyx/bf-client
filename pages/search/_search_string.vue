@@ -15,7 +15,7 @@
 
 <script>
 import Media from '@/components/content/Media'
-import ContentTabs from '@/components/infrastructure/ContentTabs'
+const ContentTabs = () => import('@/components/infrastructure/ContentTabs')
 
 export default {
     components:{Media, ContentTabs},
@@ -31,10 +31,17 @@ export default {
             active:'search'
         }
     },
-    created(){
-        // console.log("Creating search page")
-        // console.log(this.$route.params.search_string)
+    head () {
+        return {
+            titleTemplate: `${this.$route.params.search_string} HD Porn Videos & Images XXX - Bunnyfap`,
+            meta: [{
+                hid: 'description',
+                name: 'description',
+                content: `Watch unlimited ${this.$route.params.search_string} Porn in HD only at Bunnyfap. More added every day!`
+            }],
+        }
     }
+    
 }
 </script>
 

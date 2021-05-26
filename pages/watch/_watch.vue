@@ -95,7 +95,7 @@ export default {
         }
     },
     created() {
-
+        // console.log(this.$route.params.watch)
         if (this.resource){
             this.$store.dispatch('watch/setResource', this.resource)
         } 
@@ -158,7 +158,28 @@ export default {
                 hid: 'description',
                 name: 'description',
                 content: `Watch ${this.$store.getters['watch/getResource'].title} in HD only at Bunnyfap. Unlimited ${this.$store.getters['watch/getResource'].channel[0]} Porn with more added every day!`
-            }],
+            },
+            {
+                hid: 'og:title',
+                content: this.resource.title,
+                property: 'og:title'
+            },
+            // {
+            //     hid: 'og:description',
+            //     content: this.resource.title,
+            //     property: 'og:description'
+            // },
+            {
+                hid: 'og:image',
+                content: this.resource.thumbnail,
+                property: 'og:image'
+            },
+            {
+                hid: 'og:url',
+                content: 'https://www.bunnyfap.com/watch/' + this.$route.params.watch,
+                property: 'og:url'
+            }
+            ],
         }
     }
 }

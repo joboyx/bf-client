@@ -20,7 +20,7 @@
 
 <script>
 import Media from '@/components/content/Media'
-import ContentTabs from '@/components/infrastructure/ContentTabs'
+const ContentTabs = () => import('@/components/infrastructure/ContentTabs')
 import { mapGetters } from 'vuex'
 
 
@@ -48,12 +48,12 @@ export default {
         ...mapGetters('auth',['isLoggedIn', 'authenticationToken'])
     },
     head: {
-    title: 'Top content on Bunnyfap',
+    title: 'The Hottest Porn Videos and Pornstars on Bunnyfap',
     meta: [
       {
         hid: 'description',
         name: 'description',
-        content: 'View the best porn Bunnyfap has to offer!'
+        content: 'View the best and hottest porn Bunnyfap right now!'
       }
     ],
   }

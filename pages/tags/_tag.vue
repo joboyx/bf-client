@@ -15,7 +15,7 @@
 
 <script>
 import Media from '@/components/content/Media'
-import ContentTabs from '@/components/infrastructure/ContentTabs'
+const ContentTabs = () => import('@/components/infrastructure/ContentTabs')
 
 export default {
     components:{Media, ContentTabs},
@@ -28,6 +28,16 @@ export default {
             tag: [this.$route.params.tag],
             data_endpoint:'/api/resource/top',
             data_endpoint_auth:'/api/resource/top/auth',
+        }
+    },
+    head () {
+        return {
+            titleTemplate: `${this.$route.params.tag} HD Porn Videos & Images XXX - Bunnyfap`,
+            meta: [{
+                hid: 'description',
+                name: 'description',
+                content: `Watch unlimited ${this.$route.params.tag} Porn in HD only at Bunnyfap. More added every day!`
+            }],
         }
     }
 }

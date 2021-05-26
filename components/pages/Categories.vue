@@ -89,7 +89,7 @@
 // import { cat_to_image } from '@/data/categories'
 import axios from 'axios'
 import { mapGetters } from 'vuex'
-import ContentTabs from '@/components/infrastructure/ContentTabs'
+const ContentTabs = () => import('@/components/infrastructure/ContentTabs')
 import CategoryTabs from '@/components/infrastructure/CategoryTabs'
 import BunnyLovePromo from '@/components/modules/BunnyLovePromo'
 

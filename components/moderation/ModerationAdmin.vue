@@ -453,7 +453,8 @@ export default {
         if (a[1] > b[1]) return -1;
         return 0;
         },
-        ...mapGetters('auth',['isLoggedIn', 'authenticationToken', 'getUser']),
+        ...mapGetters('auth',['isLoggedIn', 'authenticationToken']),
+        ...mapGetters('user',['getUser']),
         // @vuese
         // Set the resource data once it has been received from the server.
         set_resource(index){

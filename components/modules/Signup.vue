@@ -16,7 +16,7 @@
 
 
         </v-card-title>
-        <v-layout class="font-weight-thin text-xs-center caption mb-3" justify-center> <span class="underline-on-hover" @click="login"> Already signed up? </span> </v-layout>
+        <v-layout class="font-weight-thin text-xs-center caption mb-3" justify-center> <span class="underline-on-hover" @click="login_diag"> Already signed up? </span> </v-layout>
 
      <v-layout row wrap >
 
@@ -211,7 +211,7 @@ export default {
         ...mapGetters('auth', ['getToken']),
         // @vuese
         // Takes the user the login dialog instead.
-        login(){
+        login_diag(){
             this.registerDialog = false
             this.$bus.emit('loginPrompt')
         },
@@ -240,9 +240,11 @@ export default {
                         this.$refs.recaptcha.reset()
                         if(res.success){
                             this.msg = 'Successfully registered!'
+                            console.log(res)
                             this.login(res.token)
-                            this.registerDialog = false
-                            this.$bus.emit('load_user')
+                            this.$router.go()
+                            // this.registerDialog = false
+                            // this.$bus.emit('load_user')
 
                             // this.$router.push({name: 'index', params: { new: true }});
 

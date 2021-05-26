@@ -18,10 +18,13 @@
 </div>    
 </template>
 <script>
-import FlickCard from '@/components/content/FlickCard'
+const FlickCard = () => import('@/components/content/FlickCard')
+// import FlickCard from '@/components/content/FlickCard'
 import { mapGetters } from 'vuex'
-import FlixPlayer from '@/components/content/FlixPlayer'
-import PromptRating from '@/components/modules/PromptRating'
+const FlixPlayer = () => import('@/components/content/FlixPlayer')
+// import FlixPlayer from '@/components/content/FlixPlayer'
+const PromptRating = () => import('@/components/modules/PromptRating')
+// import PromptRating from '@/components/modules/PromptRating'
 
 /**
  * @vuese

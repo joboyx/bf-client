@@ -36,6 +36,16 @@ export default {
         if(!this.isLoggedIn()){
             this.$router.push('/top')
         }
+    },
+    head () {
+        return {
+            titleTemplate: `Your HD Porn Video & Image Library XXX - Bunnyfap`,
+            meta: [{
+                hid: 'description',
+                name: 'description',
+                content: `Porn Images and Videos which didn't like.`
+            }],
+        }
     }
 }
 </script>

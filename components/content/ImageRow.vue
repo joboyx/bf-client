@@ -28,7 +28,7 @@
                                 <v-flex xs12 text-xs-center>
                                     <v-layout justify-center class="title font-weight-thin"><span class="mt-2">Start AutoFap</span> <v-icon right large>play_circle_filled</v-icon></v-layout>
                                 </v-flex>
-                                <v-flex xs12 text-xs-center v-if="false">
+                                <!-- <v-flex xs12 text-xs-center v-if="false">
                                     <vue-typer
                                     :text='taglines'
                                     :repeat='Infinity'
@@ -43,7 +43,7 @@
                                     caret-animation='smooth'
                                     class="headline font-weight-thin"
                                     ></vue-typer>
-                                </v-flex>
+                                </v-flex> -->
                             </v-layout>
                         </v-container>
                     </v-card>
@@ -76,8 +76,10 @@
 //     require('lightgallery.js/dist/css/lightgallery.css')
 // }
 
+// const ImageCard = () => import('@/components/content/ImageCard')
 import ImageCard from '@/components/content/ImageCard'
-import Theatre from '@/components/content/Theatre'
+const Theatre = () => import('@/components/content/Theatre')
+// import Theatre from '@/components/content/Theatre'
 // import SignUpAd from '@/components/SignUpAd'
 /**
  * @vuese
@@ -113,6 +115,7 @@ export default {
             console.log() // Do not remove -> Doesn't work without.
             //const elem = document.getElementById(id)
             //window.lightGallery(elem, {dynamic:true, dynamicEl: data, index:parseInt(i)})
+            
             this.$refs.lb.openModal(i)
         },
         // @vuese

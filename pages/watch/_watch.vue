@@ -151,10 +151,8 @@ export default {
         }
     },
     head () {
-        return {
-            title: '',
-            titleTemplate: `${this.$store.getters['watch/getResource'].title} - Bunnyfap`,
-            meta: [{
+        let meta = [
+            {
                 hid: 'description',
                 name: 'description',
                 content: `Watch ${this.$store.getters['watch/getResource'].title} in HD only at Bunnyfap. Unlimited ${this.$store.getters['watch/getResource'].channel[0]} Porn with more added every day!`
@@ -164,22 +162,93 @@ export default {
                 content: this.resource.title,
                 property: 'og:title'
             },
-            // {
-            //     hid: 'og:description',
-            //     content: this.resource.title,
-            //     property: 'og:description'
-            // },
+            {
+                hid: 'og:url',
+                content: 'https://www.bunnyfap.com/watch/' + this.$route.params.watch,
+                property: 'og:url'
+            },
             {
                 hid: 'og:image',
                 content: this.resource.thumbnail,
                 property: 'og:image'
             },
             {
-                hid: 'og:url',
-                content: 'https://www.bunnyfap.com/watch/' + this.$route.params.watch,
-                property: 'og:url'
+                hid: 'og:site_name',
+                content: 'Bunnyfap',
+                property: 'og:site_name'
+            },
+            {
+                hid: 'twitter:title',
+                content: this.resource.title,
+                property: 'twitter:title'
+            },
+            {
+                hid: 'twitter:description',
+                content: `Watch ${this.$store.getters['watch/getResource'].title} in HD only at Bunnyfap. Unlimited ${this.$store.getters['watch/getResource'].channel[0]} Porn with more added every day!`,
+                property: 'twitter:description'
+            },
+            {
+                hid: 'twitter:image',
+                content: this.resource.thumbnail,
+                property: 'twitter:image'
+            },
+            {
+                hid: 'twitter:site',
+                content: '@bunnyfap',
+                property: 'twitter:site'
+            },
+        ]
+
+        if (this.resource.type === 'web_video'){
+            let og_video = {
+                hid: 'og:video',
+                content: this.resource.url,
+                property: 'og:video'
             }
-            ],
+            meta.push(og_video)
+            let og_type = {
+                hid: 'og:type',
+                content: 'video',
+                property: 'og:type'
+            }
+            meta.push(og_type)
+
+            let twitter_card = {
+                hid: 'twitter:card',
+                content: 'player',
+                property: 'twitter:card'
+            }
+            meta.push(twitter_card)
+
+            let twitter_player = {
+                hid: 'twitter:player',
+                content: this.resource.url,
+                property: 'twitter:player'
+            }
+            meta.push(twitter_player)
+
+        }  else{
+            let twitter_card = {
+                hid: 'twitter:card',
+                content: 'summary_large_image',
+                property: 'twitter:card'
+            }
+            meta.push(twitter_card)
+        }
+        
+        if(this.resource.type === 'img'){
+            let og_type = {
+                hid: 'og:type',
+                content: 'image',
+                property: 'og:type'
+            }
+            meta.push(og_type)
+        } 
+
+        return {
+            title: '',
+            titleTemplate: `${this.$store.getters['watch/getResource'].title} - Bunnyfap`,
+            meta: meta,
         }
     }
 }

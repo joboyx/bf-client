@@ -1,6 +1,6 @@
 <template>
 <div >
-    <div v-if="user.tier != 0 && user.tier!= 1">
+    <div v-if="getUser().tier != 0 && getUser().tier!= 1">
 
     <div v-if="tags.length==0">
         <v-layout class="justify-center mt-5">
@@ -345,6 +345,7 @@ export default {
     },
     methods:{
         ...mapGetters('auth',['isLoggedIn', 'authenticationToken']),
+        ...mapGetters('user',['getUser']),
         // @vuese
         // Close a menu box which appears when hovering over a top tag.
         close_menu_top(x){
@@ -539,7 +540,7 @@ export default {
 
         this.$bus.emit('get_user')
 
-        if(this.isLoggedIn() && this.user.tier != 0 && this.user.tier != 1){
+        if(this.isLoggedIn() && this.getUser().tier != 0 && this.getUser().tier != 1){
             let h = {headers:{Authorization : this.authenticationToken()}}
 
             this.$axios.$get('/api/user/activity/statistics',h)

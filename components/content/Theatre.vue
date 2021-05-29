@@ -1190,7 +1190,11 @@ export default {
     if (this.$store.getters['auth/getToken'] == false){
       this.mute = true
     } else{
-      this.mute = this.$store.getters['user/getUser'].mute
+      if(this.$store.getters['user/getUser'].sound === "on"){
+        this.mute = true
+      } else{
+        this.mute = false
+      }
     }
 
     

@@ -3,11 +3,11 @@
     <div class="darkk " >
       <v-container fluid style="height:100vh" fill-height align-center class="align-center">
         <v-layout justify-center align-center class="white--text font-weight-thin heading">
-          <span v-if="isLoggedIn()">We are activating your membership. You will be automatically redirected.</span>
-          <span v-else>Please <span class="link" @click="login">login</span> and then reload this page.</span>
+          <span v-if="!isGuest()">We are activating your membership. You will be automatically redirected.</span>
+          <span v-else>Please <span class="link" @click="$bus.emit('loginPrompt')">login</span> and then reload this page.</span>
           {{msg}}
-        </v-layout>
 
+        </v-layout>
       </v-container>
     </div>
   </div>
@@ -25,17 +25,17 @@ export default {
     }
   },
   methods:{
-        ...mapGetters('auth',['isLoggedIn', 'authenticationToken']),
+        ...mapGetters('auth',['isLoggedIn', 'authenticationToken', 'isGuest']),
         login(){
           this.$router.push('/login')
         }
   },
   created(){
-    if(this.isLoggedIn()){
+    if(!this.isGuest()){
       this.msg = ''
       let h = {headers:{Authorization : this.authenticationToken()}}
       // console.log("Code: " + this.code)
-      this.$axios.post('/api/patreon/activate', {code:this.code}, h)
+      this.$axios.post('/api/patreon/activate', {code:this.$route.params.activate}, h)
         .then((res)=>{
           if(res.data.success){
             this.$bus.emit('refresh_carrots')

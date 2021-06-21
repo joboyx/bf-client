@@ -727,10 +727,10 @@ export default {
               tmp.splice(tmp.indexOf(this.current_resource.tags[t]),1)
           }
 
-          for(let t in this.current_resource.s_tags){
-            if(tmp.indexOf(this.current_resource.s_tags[t].tag) != -1)
-              tmp.splice(tmp.indexOf(this.current_resource.s_tags[t].tag),1)
-          }
+          // for(let t in this.current_resource.s_tags){
+          //   if(tmp.indexOf(this.current_resource.s_tags[t].tag) != -1)
+          //     tmp.splice(tmp.indexOf(this.current_resource.s_tags[t].tag),1)
+          // }
 
 
           this.tag_options = tmp
@@ -811,7 +811,15 @@ export default {
         // }
 
 
-        this.$emit('suggestion_sent', this.tags)
+          let s_tags_titles = this.current_resource.s_tags.map(t => t['tag'])
+          for (let tag of this.tags) {
+            if (s_tags_titles.includes(tag)) {
+              this.$emit('vote_s_tag_up',s_tags_titles.indexOf(tag))
+            }
+          }
+
+          this.tags = this.tags.filter(tag => s_tags_titles.indexOf((tag)) == -1)
+          this.$emit('suggestion_sent', this.tags)
       }
     },
     created(){
